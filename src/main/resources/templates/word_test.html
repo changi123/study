@@ -1,50 +1,88 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>단어 테스트 프로그램</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background-color: #f4f4f9;
-            margin: 0;
-            padding: 0;
-        }
-        .container {
-            margin-top: 100px;
-            display: flex;
-            flex-direction: column; /* 버튼을 세로로 배치 (기본) */
-            align-items: center;
-            gap: 15px; /* 버튼 간 간격 */
-        }
-        h1 {
-            color: #333;
-        }
-        .btn {
-            display: inline-block;
-            padding: 15px 30px;
-            font-size: 18px;
-            color: #fff;
-            background-color: #007BFF;
-            border: none;
-            border-radius: 5px;
-            text-decoration: none;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-        .btn:hover {
-            background-color: #0056b3;
-        }
-    </style>
+<meta charset="UTF-8">
+<title>Word Test</title>
+<style>
+body {
+	font-family: Arial, sans-serif;
+	text-align: center;
+	margin-top: 50px;
+}
+
+.container {
+	width: 50%;
+	margin: auto;
+	padding: 20px;
+	border: 1px solid #ccc;
+	border-radius: 10px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.question {
+	font-size: 24px;
+	margin-bottom: 20px;
+}
+
+.input-container {
+	margin-bottom: 20px;
+}
+
+input[type="text"] {
+	padding: 10px;
+	width: 80%;
+	font-size: 16px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+}
+
+.btn {
+	padding: 10px 20px;
+	font-size: 16px;
+	color: white;
+	background-color: #007bff;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+.btn:hover {
+	background-color: #0056b3;
+}
+
+.info {
+	margin-top: 20px;
+	font-size: 16px;
+	color: #555;
+}
+</style>
 </head>
 <body>
-    <div class="container">
-        <h1>단어 테스트 프로그램</h1>
-        <a href="/word/test" class="btn">단어 테스트</a>
-        <a href="/word/add" class="btn">단어 추가</a>
-        <a href="/view-words" class="btn">단어 목록 보기</a>
-    </div>
+	<div class="container">
+		<h1>홍찬기 영단어 테스트</h1>
+
+
+		<div class="question">
+			문제 아이디: <span th:text="${questionDto.question_id}"></span>
+		</div>
+
+		<div class="question">
+			문제: <span th:text="${questionDto.question_word}"></span>
+		</div>
+
+		<div class="question">
+			예문: <span th:text="${exampleDto.example_detail}"></span>
+		</div>
+
+		<div class="input-container">
+			<input type="text" id="answer" placeholder="정답을 입력하세요">
+		</div>
+		
+		<button class="btn" onclick="checkAnswer()">제출</button>
+
+		<div class="info">
+			틀린 횟수: <span th:text="${questionDto.question_cnt}"></span>
+		</div>
+	</div>
 </body>
 </html>
