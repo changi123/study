@@ -16,5 +16,5 @@ public class QuestionDto {
 	private String question_word; // 문제단어
 	private String question_ans; // 문제정답
 	private int question_cnt; // 틀린횟수
-	
+	private int question_day  ; // 포함 Day
 }

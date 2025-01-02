@@ -24,14 +24,36 @@ public class IndexController {
 	private WordMapper wordMapper;
 
 
+	@GetMapping("/testChoiceDay")
+	String testChoiceDay() {
+		return "word_testDay";
+	}
+	@GetMapping("/testPractice")
+	String testPractice() {
+		return "word_practiceDay";
+	}
+	
+	
 	@GetMapping("/test")
-	String wordTest(@RequestParam("question_id") int question_id , Model model) {
-
-		QuestionDto questionDto = questionService.randomQuestionInfo(question_id);
-		ExampleDto exampleDto = questionService.exampleDetail(question_id);
+	String wordTest(@RequestParam("question_day") int question_day , Model model) {
+		QuestionDto questionDto = questionService.QuestionInfo(question_day);
+		ExampleDto exampleDto = questionService.exampleDetail(questionDto.getQuestion_id());
 		model.addAttribute("questionDto", questionDto); 
 		model.addAttribute("exampleDto", exampleDto); 
 		return "word_test";
+	}
+	
+	@GetMapping("/practice")
+	String wordpractice(@RequestParam("question_day") int question_day , Model model) {
+//		QuestionDto questionDto = questionService.QuestionPracticeInfo(question_day);
+//		ExampleDto exampleDto = questionService.exampleDetail(questionDto.getQuestion_id());
+//		model.addAttribute("questionDto", questionDto); 
+//		model.addAttribute("exampleDto", exampleDto); 
+		QuestionDto questionDto = questionService.QuestionInfo(question_day);
+		ExampleDto exampleDto = questionService.exampleDetail(questionDto.getQuestion_id());
+		model.addAttribute("questionDto", questionDto); 
+		model.addAttribute("exampleDto", exampleDto); 
+		return "word_practice";
 	}
 
 	@GetMapping("/add")
@@ -41,6 +63,6 @@ public class IndexController {
 	@PostMapping("/add")
 	public String wordAddSubmit(QuestionDto questionDto, ExampleDto exampleDto) {
 		questionService.addQuestionWithExamples(questionDto, exampleDto);
-		return "index"; 
+		return "redirect:/"; 
 	}
 }

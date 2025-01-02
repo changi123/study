@@ -2,47 +2,80 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="hello.study.mapper.WordMapper">
-	<!-- 단어추가  -->
+	<!-- 단어추가 -->
 	<insert id="insertQuestion"
 		parameterType="hello.study.dto.QuestionDto">
-		INSERT INTO question (question_word, question_ans, question_cnt)
-		VALUES (#{question_word}, #{question_ans}, #{question_cnt})
+		INSERT INTO question (question_word, question_ans,
+		question_cnt , question_day)
+		VALUES (#{question_word}, #{question_ans},
+		#{question_cnt} , #{question_day})
 	</insert>
 
 	<!-- 단어에 대한 예문 추가 -->
 	<insert id="insertExample"
 		parameterType="hello.study.dto.ExampleDto">
 		INSERT INTO Example (question_id, example_detail)
-		VALUES (#{question_id}, #{example_detail})
+		VALUES
+		(#{question_id}, #{example_detail})
 	</insert>
 
+	<!-- 틀린 횟수 증가 -->
+	<update id="wrongAnswer"
+		parameterType="hello.study.dto.QuestionDto">
+		UPDATE question
+		SET question_cnt = #{question_cnt}
+		WHERE
+		question_id = #{question_id}
 
+	</update>
 	<!-- 특정 아이디 단어 조회 -->
-	<select id="selectByQuestionId" resultType="hello.study.dto.QuestionDto" parameterType="Integer">
-    SELECT * FROM question WHERE question_id = #{question_id}
+	<select id="selectByQuestionId"
+		resultType="hello.study.dto.QuestionDto" parameterType="Integer">
+		SELECT * FROM
+		question WHERE question_id = #{question_id}
 	</select>
 
 	<!-- 단어아이디 랜덤번호뽑기 -->
 	<select id="randomQuestion" resultType="Integer">
-    SELECT question_id FROM question ORDER BY RAND() LIMIT 1;
+		SELECT question_id FROM
+		question ORDER BY RAND() LIMIT 1;
 	</select>
-	
+
 
 	<!-- 가장 최근에 추가된 단어아이디 가져오기 -->
 	<select id="selectRecentQuestion" resultType="Integer">
-    SELECT question_id FROM question ORDER BY question_id DESC LIMIT 1
+		SELECT question_id
+		FROM question ORDER BY question_id DESC LIMIT 1
 	</select>
 
-	<!-- 단어 전체 조회  -->
+	<!-- 단어 전체 조회 -->
 	<select id="selectQuestion"
 		resultType="hello.study.dto.QuestionDto">
 		SELECT * FROM question
 	</select>
-	
-	<!-- 단어에 대한 예문 조회  -->
+
+	<!-- 단어에 대한 예문 조회 -->
 	<select id="exampleDetail"
 		resultType="hello.study.dto.ExampleDto" parameterType="Integer">
-		SELECT * FROM example WHERE question_id = #{question_id}
+		SELECT * FROM
+		example WHERE question_id = #{question_id}
+	</select>
+
+	<!-- 테스트 첫 페이지 첫 문제 -->
+	<select id="QuestionInfo"
+		resultType="hello.study.dto.QuestionDto"
+		parameterType="java.lang.Integer">
+		SELECT * FROM
+		question WHERE question_day = #{question_day} ORDER BY question_id asc
+		LIMIT 1;
+	</select>
+	<!-- 연습 할 때 첫 페이지 단어 -->
+	<select id="QuestionPracticeInfo"
+		resultType="hello.study.dto.QuestionDto"
+		parameterType="java.lang.Integer">
+		SELECT * FROM
+		question WHERE question_day = #{question_day} ORDER BY question_cnt desc
+		LIMIT 1;
 	</select>
 
 

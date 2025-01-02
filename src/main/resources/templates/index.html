@@ -45,16 +45,13 @@ h1 {
 </style>
 </head>
 <body>
-	<!--     <div class="container">
-        <h1>단어 테스트 프로그램</h1>
-        <a href="word/test" class="btn">단어 테스트</a>
-        <a href="word/add" class="btn")>단어 추가</a>
-        <a href="/view-words" class="btn">단어 목록 보기</a>
-    </div> -->
 	<h1>단어 테스트 프로그램</h1>
 	<!-- 단어 테스트 버튼 -->
 	<button class="btn" id="wordTestBtn">단어 테스트</button>
-
+	
+	<!-- 단어 추가 버튼 -->
+	<button class="btn" id="wordPractice">단어 연습</button>
+	
 	<!-- 단어 추가 버튼 -->
 	<button class="btn" id="wordAddBtn">단어 추가</button>
 
@@ -63,20 +60,13 @@ h1 {
 </body>
 <script type="text/javascript">
 
- 	// 단어 테스트 페이지 처음 뿌릴 것 가지고 가자
+
 	$('#wordTestBtn').click(function() {
-		$.ajax({
-			url : '/api/word/test', 
-			type : 'GET', 
-			success : function(data) {
-				// 랜덤번호 가지고 가서 조회해서 페이지 가져가자
-				console.log(data);
-				window.location.href = '/word/test?question_id=' + data;
-			},
-			error : function(xhr, status, error) {
-				console.error('wordTestBtn Error:', error); 
-			}
-		});
+		window.location.href = '/word/testChoiceDay';
+	});
+
+	$('#wordPractice').click(function() {
+		window.location.href = '/word/testPractice';
 	});
 
 	// 단어 추가 페이지

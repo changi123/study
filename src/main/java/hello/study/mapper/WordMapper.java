@@ -18,13 +18,16 @@ public interface WordMapper {
 	// 추가된 단어 아이디 가져오기
 	int selectRecentQuestion();
 	
-	// 단어아이디 랜덤으로 뽑기
-	int randomQuestion();
-	
 	// 단어아이디에 따른 단어
 	QuestionDto selectByQuestionId(int question_id);
 
 	ExampleDto exampleDetail(int question_id);
+
+	int wrongAnswer(QuestionDto questionDto);
+
+	QuestionDto QuestionInfo(int question_day);
+
+	QuestionDto QuestionPracticeInfo(int question_day);
 
 //	void selectQuestion();
 

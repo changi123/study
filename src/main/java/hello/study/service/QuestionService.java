@@ -14,15 +14,15 @@ public class QuestionService {
 	private WordMapper wordMapper;
 
 	
-	// 단어 랜덤 아이디 조회
-	public int randomQuestion() {
-		int num = wordMapper.randomQuestion();
-		return num;
-		
-	}
+//	// 단어 랜덤 아이디 조회
+//	public int randomQuestion() {
+//		int num = wordMapper.randomQuestion();
+//		return num;
+//		
+//	}
 	
-	// 랜덤 아이디 단어 정보 조회 
-	public QuestionDto randomQuestionInfo(int question_id) {
+	// 단어 아이디별 정보 조회 
+	public QuestionDto selectByQuestionId(int question_id) {
 		return wordMapper.selectByQuestionId(question_id);
 		
 	}
@@ -41,6 +41,23 @@ public class QuestionService {
 	// 단어에 대한 예문 조회
 	public ExampleDto exampleDetail(int question_id) {
 		return wordMapper.exampleDetail(question_id);
+	}
+
+	public int wrongAnswer(int question_id) {
+		QuestionDto questionDto = wordMapper.selectByQuestionId(question_id);
+		int updateCnt = questionDto.getQuestion_cnt()+1;
+		questionDto.setQuestion_cnt(updateCnt);
+		return wordMapper.wrongAnswer(questionDto);
+	}
+	
+	// 테스트 할 때 문제 정보
+	public QuestionDto QuestionInfo(int question_day) {
+		return wordMapper.QuestionInfo(question_day);
+	}
+	// 연습 할 때 문제 정보 틀린 횟수 순
+	public QuestionDto QuestionPracticeInfo(int question_day) {
+		// TODO Auto-generated method stub
+		return wordMapper.QuestionPracticeInfo(question_day);
 	}
 
 

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>테스트할 Day를 입력하세요</title>
+</head>
+<style>
+/* style.css */
+body {
+	font-family: Arial, sans-serif;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	background-color: #f4f4f9;
+	margin: 0;
+}
+
+.container {
+	background-color: white;
+	padding: 40px;
+	border-radius: 10px;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+	text-align: center;
+	width: 350px;
+}
+
+h1 {
+	font-size: 24px;
+	color: #333;
+	margin-bottom: 20px;
+}
+
+label {
+	font-size: 18px;
+	color: #555;
+	display: block;
+	margin-bottom: 10px;
+}
+
+input[type="text"] {
+	padding: 10px;
+	font-size: 16px;
+	width: 100%;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	margin-bottom: 20px;
+	box-sizing: border-box;
+	outline: none;
+}
+
+input[type="text"]:focus {
+	border-color: #4CAF50; /* 초록색 테두리 */
+}
+
+button {
+	padding: 10px 20px;
+	background-color: #4CAF50;
+	color: white;
+	border: none;
+	border-radius: 5px;
+	font-size: 16px;
+	cursor: pointer;
+	width: 100%;
+	box-sizing: border-box;
+}
+
+button:hover {
+	background-color: #45a049;
+}
+
+#result {
+	margin-top: 20px;
+	font-size: 16px;
+	color: #555;
+}
+</style>
+<script>
+
+</script>
+<body>
+	<div class="container">
+		<h1>연습할 Day를 입력하세요</h1>
+		<form id="dayForm" action="/word/practice">
+			<label for="testDay">연습할 Day입력</label> <input type="text"
+				id="question_day" name="question_day" placeholder="1" required>
+			<button type="submit">시작</button>
+		</form>
+		<div id="result"></div>
+	</div>
+
+</body>
+</html>

@@ -18,12 +18,25 @@ public class RestApiController {
     @Autowired
     private  QuestionService questionService;
 
-	@Autowired
-	private WordMapper wordMapper;
+//	@Autowired
+//	private WordMapper wordMapper;
 	
-    @GetMapping("/test")
-    public int wordTest() {
-        return wordMapper.randomQuestion();
+    @PostMapping("/test")
+    public QuestionDto wordTest(QuestionDto questionDto) {
+    	int nextQuestionId = questionDto.getQuestion_id()+1;
+    	questionDto = questionService.selectByQuestionId(nextQuestionId);
+    	// 더이상 문제가 없으면 0 있으면 1
+    	if( questionDto == null ) {
+    		return null ;
+    	} else {
+    		return questionDto;    		
+    	}    	
     }
+    
+    @PostMapping("/wrongAnswer")
+    public int wrongAnswer(QuestionDto questionDto) {
+    	return questionService.wrongAnswer(questionDto.getQuestion_id());
+    }
+    
     
 }

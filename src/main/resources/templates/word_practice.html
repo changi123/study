@@ -152,17 +152,6 @@ $(".btn").click(function() {
     // 정답이 아닌 경우 (틀린 횟수 증가시키기)
     if (realAns != question_ans) {
         showModal("정답이 아닙니다.");
-        $.ajax({
-            url: '/api/word/wrongAnswer',
-            type: 'POST',
-            data: data,
-            success: function(data) {
-                // 추가적인 처리 (필요한 경우)
-            },
-            error: function(xhr, status, error) {
-                console.error('testCheck Error:', error);
-            }
-        });
     } else {
         // 정답일 경우
         showModal("정답입니다!");
@@ -186,7 +175,7 @@ $(".btn").click(function() {
                     if (data.question_id == null) {
                         alert("문제끝")
                         window.location.href = '/'; 
-                    } else {
+                    } else {                 	
                         $("#question_id").text(data.question_id);
                         $("#question_word").text(data.question_word);
                         $("#example_detail").text(data.example_detail);
