@@ -22,4 +22,9 @@
 #### (2) 단어 정보 입력 화면
 ![image](https://github.com/user-attachments/assets/3ed21838-75e6-4209-9f79-1ac833283318)
 
+## 3. 진행상태
+#### (1) SpringBoot + Mybatis 연동완료
+#### (2) 랜덤으로 단어 정보 불러오기
+#### (3) 단어 정보 INSERT 기능 완료
+
 
