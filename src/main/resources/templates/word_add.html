@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>단어 추가</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            margin-top: 50px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        h1 {
+            color: #333;
+        }
+        label {
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 8px;
+            text-align: left;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 20px;
+            margin-bottom: 15px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .btn {
+            padding: 15px 30px;
+            font-size: 18px;
+            color: #fff;
+            background-color: #007BFF;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .btn:hover {
+            background-color: #007BFF;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>단어 추가</h1>
+        <form action="/word/add" method="POST">
+            <div>
+                <label for="word">단어</label>
+                <input type="text" id="question_word" name="question_word" placeholder="단어를 입력하세요" required>
+            </div>
+            <div>
+                <label for="meaning">단어 뜻</label>
+                <input type="text" id="question_ans" name="question_ans" placeholder=",구분으로 단어 뜻을 나열해주세요. 공백x" required>
+            </div>
+            <div>
+                <label for="example">예문</label>
+                <textarea id="example_detail" name="example_detail" rows="4" placeholder="단어를 사용할 예문을 입력하세요" required></textarea>
+            </div>
+            <button type="submit" class="btn">단어 추가</button>
+        </form>
+    </div>
+</body>
+</html>

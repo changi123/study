@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="hello.study.mapper.WordMapper">
+
+    <!-- 문제를 추가하는 SQL -->
+<!--     <insert id="insertQuestion" parameterType="hello.study.dto.QuestionDto">
+        INSERT INTO question (question_word, question_word , question_word ,question_word)
+        VALUES (1, '123','123',0)
+    </insert> -->
+
+
+<select id="selectQuestion" resultType="hello.study.dto.QuestionDto">
+    SELECT * FROM question
+</select>
+</mapper>
