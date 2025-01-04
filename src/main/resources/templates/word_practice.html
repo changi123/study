@@ -115,7 +115,7 @@ input[type="text"] {
 		</div>
 
 		<div class="question">
-			예문: <span th:text="${exampleDto.example_detail}" id="question_detail"></span>
+			예문: <span th:text="${exampleDto.example_detail}" id="example_detail"></span>
 		</div>
 
 		<div class="input-container">
@@ -151,7 +151,7 @@ $(".btn").click(function() {
 
     // 정답이 아닌 경우 (틀린 횟수 증가시키기)
     if (realAns != question_ans) {
-        showModal("정답이 아닙니다.");
+        showModal("오답입니다. 정답은 "+ $("#realAns").val());
     } else {
         // 정답일 경우
         showModal("정답입니다!");
@@ -175,12 +175,13 @@ $(".btn").click(function() {
                     if (data.question_id == null) {
                         alert("문제끝")
                         window.location.href = '/'; 
-                    } else {                 	
+                    } else {       
                         $("#question_id").text(data.question_id);
                         $("#question_word").text(data.question_word);
                         $("#example_detail").text(data.example_detail);
                         $("#realAns").val(data.question_ans);
                         $("#question_cnt").text(data.question_cnt);
+                        $("#answer").val("");
                     }
                 },
                 error: function(xhr, status, error) {
