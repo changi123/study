@@ -5,8 +5,9 @@
 # ✔ 25.01.02
 #### SpringBoot + Mybatis 연동완료
 
-## ERD 기본적인 틀 
-![image](https://github.com/user-attachments/assets/3f056e51-53ba-4974-bfba-6525157ae176)
+## ERD ( 계속해서 추가하자 ) 
+![image](https://github.com/user-attachments/assets/5173f944-066d-4052-b656-ec5c20e6f700)
+
 
 #### 참고) 일단 문제에 대한 여러개의 예문으로 구성하자 만들면서 추가
 
