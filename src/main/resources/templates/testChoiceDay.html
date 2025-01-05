@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>테스트할 Day를 입력하세요</title>
 </head>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <style>
 /* style.css */
 body {
@@ -82,13 +83,41 @@ button:hover {
 <body>
 	<div class="container">
 		<h1>테스트할 Day를 입력하세요</h1>
-		<form id="dayForm" action="/word/test">
-			<label for="testDay">테스트할 Day입력</label> <input type="text"
-				id="question_day" name="question_day" placeholder="1" required>
-			<button type="submit">시작</button>
-		</form>
+		<label for="testDay">테스트할 Day입력</label> <input type="text"
+			id="question_day" name="question_day" placeholder="1" required>
+		<button id="submit">시작</button>
 		<div id="result"></div>
 	</div>
 
 </body>
+
+<script type="text/javascript">
+
+	$("#submit").click(function(){
+		var questionDay = $("#question_day").val();
+		var data  = {
+				question_day : questionDay
+		}
+		// 해당하는 날짜 문제가 있는지 체크
+		 $.ajax({
+             url: '/api/word/dayCheck',
+             type: 'POST',
+             data: data,
+             success: function(data) {
+    			
+            	 if( data ){
+            		 window.location.href = '/word/test?question_day=' + questionDay + '&question_id=' + 1;
+            	 } else{
+            		 alert("아직 등록된 문제가 없습니다.");
+            	 }
+	               
+             },
+             error: function(xhr, status, error) {
+               
+             }
+         });
+
+	})
+
+</script>
 </html>

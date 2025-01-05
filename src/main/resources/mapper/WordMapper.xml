@@ -61,14 +61,20 @@
 		example WHERE question_id = #{question_id}
 	</select>
 
-	<!-- 테스트 첫 페이지 첫 문제 -->
+
+
+	<!-- 안쓰는지 ㅊ ㅔ크  -->
+	<!-- 테스트 문제 조회 -->
 	<select id="QuestionInfo"
 		resultType="hello.study.dto.QuestionDto"
-		parameterType="java.lang.Integer">
+		parameterType="hello.study.dto.QuestionDto">
 		SELECT * FROM
-		question WHERE question_day = #{question_day} ORDER BY question_id asc
-		LIMIT 1;
+		question WHERE question_id = #{question_id} AND question_day = #{question_day} 
 	</select>
+	
+	
+	
+	<!-- 안쓰는지 체크 -->
 	<!-- 연습 할 때 첫 페이지 단어 -->
 	<select id="QuestionPracticeInfo"
 		resultType="hello.study.dto.QuestionDto"
@@ -76,6 +82,16 @@
 		SELECT * FROM
 		question WHERE question_day = #{question_day} ORDER BY question_cnt desc
 		LIMIT 1;
+	</select>
+	
+	<!-- 해당하는 날짜에 문제가 있는지 체크 -->
+	<select id="dayCheck"
+		resultType="hello.study.dto.QuestionDto"
+		parameterType="java.lang.Integer">
+		SELECT *
+		FROM question 
+		WHERE question_day = #{question_day}
+		LIMIT 1 
 	</select>
 
 

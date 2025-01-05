@@ -51,14 +51,23 @@ public class QuestionService {
 	}
 	
 	// 테스트 할 때 문제 정보
-	public QuestionDto QuestionInfo(int question_day) {
-		return wordMapper.QuestionInfo(question_day);
+	public QuestionDto QuestionInfo(QuestionDto questionDto) {
+		return wordMapper.QuestionInfo(questionDto.getQuestion_id(), questionDto.getQuestion_day());
 	}
 	// 연습 할 때 문제 정보 틀린 횟수 순
 	public QuestionDto QuestionPracticeInfo(int question_day) {
-		// TODO Auto-generated method stub
 		return wordMapper.QuestionPracticeInfo(question_day);
 	}
+	
+	
+	// 해당하는 날짜에 문제가 있는지 체크
+	public QuestionDto dayCheck(int question_day) {
+		return wordMapper.dayCheck(question_day);
+	}
+
+	
+	
+
 
 
 

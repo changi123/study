@@ -103,7 +103,7 @@ input[type="text"] {
 </head>
 <body>
 	<div class="container">
-		<h1>홍찬기 영단어 연습</h1>
+		<h1>영단어 테스트</h1>
 
 
 		<div class="question">
@@ -115,7 +115,7 @@ input[type="text"] {
 		</div>
 
 		<div class="question">
-			예문: <span th:text="${exampleDto.example_detail}" id="example_detail"></span>
+			예문: <span th:text="${exampleDto.example_detail}" id="question_detail"></span>
 		</div>
 
 		<div class="input-container">
@@ -123,8 +123,14 @@ input[type="text"] {
 		</div>
 
 		<button class="btn">확인</button>
+		
+		<!-- 실제 정답 -->
 		<input type="hidden" id="realAns"
 			th:value="${questionDto.question_ans}">
+			
+			<!-- 선택 Day -->
+		<input type="hidden" id="question_day"
+			th:value="${questionDto.question_day}">
 
 		<div class="info">
 			틀린 횟수: <span th:text="${questionDto.question_cnt}" id ="question_cnt"></span>
@@ -144,14 +150,16 @@ $(".btn").click(function() {
     var question_id = $("#question_id").text();
     var question_ans = $("#answer").val();
     var realAns = $("#realAns").val();
+    var question_day = $("#question_day").val();
     var data = {
         question_id: question_id,
-        question_ans: question_ans
+        question_ans: question_ans,
+        question_day : question_day
     };
 
     // 정답이 아닌 경우 (틀린 횟수 증가시키기)
     if (realAns != question_ans) {
-        showModal("오답입니다. 정답은 "+ $("#realAns").val());
+        showModal("정답이 아닙니다.");
     } else {
         // 정답일 경우
         showModal("정답입니다!");
@@ -161,27 +169,36 @@ $(".btn").click(function() {
         var modal = document.getElementById("alertModal");
         var messageElement = document.getElementById("alertMessage");
         messageElement.textContent = message;
-
         modal.style.display = "block";
-
         document.getElementById("okButton").onclick = function() {
-            modal.style.display = "none";
-            // 다음 문제로 이동
+        modal.style.display = "none";
+        	// 오답일 경우 틀린 횟수 증가
+            if( message == "정답이 아닙니다."){
+            	  $.ajax({
+                      url: '/api/word/wrongAnswer',
+                      type: 'POST',
+                      data: data,
+                      success: function(data) {
+                          // 추가적인 처리 (필요한 경우)
+                      },
+                      error: function(xhr, status, error) {
+                          console.error('testCheck Error:', error);
+                      }
+                  });
+            }
+            
+        	// 다음 문제가 있다면 다음 문제로 이동
             $.ajax({
-                url: '/api/word/test',
+                url: '/api/word/nextCheck',
                 type: 'POST',
                 data: data,
                 success: function(data) {
+                	question_id = data.question_id;
+                	question_day = data.question_day;
                     if (data.question_id == null) {
-                        alert("문제끝")
                         window.location.href = '/'; 
-                    } else {       
-                        $("#question_id").text(data.question_id);
-                        $("#question_word").text(data.question_word);
-                        $("#example_detail").text(data.example_detail);
-                        $("#realAns").val(data.question_ans);
-                        $("#question_cnt").text(data.question_cnt);
-                        $("#answer").val("");
+                    } else {
+                    	window.location.href = '/word/test?question_day=' + question_day + '&question_id=' + question_id;
                     }
                 },
                 error: function(xhr, status, error) {

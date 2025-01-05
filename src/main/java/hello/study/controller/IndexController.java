@@ -24,36 +24,48 @@ public class IndexController {
 	private WordMapper wordMapper;
 
 
+	// 단어 테스트 Day 선택 화면 이동
 	@GetMapping("/testChoiceDay")
 	String testChoiceDay() {
-		return "word_testDay";
+		return "testChoiceDay";
 	}
-	@GetMapping("/testPractice")
+	@GetMapping("/practiceChoiceDay")
 	String testPractice() {
-		return "word_practiceDay";
+		return "practiceChoiceDay";
 	}
-	
-	
+
+
+	// 영단어 테스트 문제
 	@GetMapping("/test")
-	String wordTest(@RequestParam("question_day") int question_day , Model model) {
-		QuestionDto questionDto = questionService.QuestionInfo(question_day);
+	String test(QuestionDto questionDto , Model model) {
+		questionDto = questionService.QuestionInfo(questionDto);
 		ExampleDto exampleDto = questionService.exampleDetail(questionDto.getQuestion_id());
 		model.addAttribute("questionDto", questionDto); 
 		model.addAttribute("exampleDto", exampleDto); 
-		return "word_test";
+		return "wordTest";
 	}
+
+
 	
-	@GetMapping("/practice")
-	String wordpractice(@RequestParam("question_day") int question_day , Model model) {
-//		QuestionDto questionDto = questionService.QuestionPracticeInfo(question_day);
+//	// 영단어 테스트 다음 문제
+//	@PostMapping("/test")
+//	String testNext(QuestionDto questionDto, Model model) {
+//	  	int nextQuestionId = questionDto.getQuestion_id()+1;
+//    	questionDto = questionService.selectByQuestionId(nextQuestionId);
 //		ExampleDto exampleDto = questionService.exampleDetail(questionDto.getQuestion_id());
 //		model.addAttribute("questionDto", questionDto); 
 //		model.addAttribute("exampleDto", exampleDto); 
-		QuestionDto questionDto = questionService.QuestionInfo(question_day);
+//		return "wordTest";
+//	}
+
+	// 단어 연습 문제
+	@GetMapping("/practice")	
+	String wordpractice(QuestionDto questionDto , Model model) {
+		questionDto = questionService.QuestionInfo(questionDto);
 		ExampleDto exampleDto = questionService.exampleDetail(questionDto.getQuestion_id());
 		model.addAttribute("questionDto", questionDto); 
 		model.addAttribute("exampleDto", exampleDto); 
-		return "word_practice";
+		return "wordPractice";
 	}
 
 	@GetMapping("/add")
