@@ -6,7 +6,9 @@
 #### SpringBoot + Mybatis 연동완료
 
 ## ERD ( 계속해서 추가하자 ) 
-![image](https://github.com/user-attachments/assets/5173f944-066d-4052-b656-ec5c20e6f700)
+#### 2025-01-06 
+#### ㄴ exampleAns ( 예문해석 ) + exampleGrammar ( 예문 문법 ) 컬럼 추가 
+![image](https://github.com/user-attachments/assets/40ac5eb0-f88d-4787-aaa4-798fb7d37d57)
 
 
 #### 참고) 일단 문제에 대한 여러개의 예문으로 구성하자 만들면서 추가
