@@ -107,15 +107,15 @@ input[type="text"] {
 
 
 		<div class="question">
-			문제 아이디: <span th:text="${questionDto.question_id}" id="question_id"></span>
+			문제 아이디: <span th:text="${questionDto.questionId}" id="questionId"></span>
 		</div>
 
 		<div class="question">
-			문제: <span th:text="${questionDto.question_word}" id="question_word"></span>
+			문제: <span th:text="${questionDto.questionWord}" id="questionWord"></span>
 		</div>
 
 		<div class="question">
-			예문: <span th:text="${exampleDto.example_detail}" id="question_detail"></span>
+			예문: <span th:text="${exampleDto.exampleDetail}" id="questionDetail"></span>
 		</div>
 
 		<div class="input-container">
@@ -126,14 +126,14 @@ input[type="text"] {
 		
 		<!-- 실제 정답 -->
 		<input type="hidden" id="realAns"
-			th:value="${questionDto.question_ans}">
+			th:value="${questionDto.questionAns}">
 			
 			<!-- 선택 Day -->
 		<input type="hidden" id="question_day"
-			th:value="${questionDto.question_day}">
+			th:value="${questionDto.questionDay}">
 
 		<div class="info">
-			틀린 횟수: <span th:text="${questionDto.question_cnt}" id ="question_cnt"></span>
+			틀린 횟수: <span th:text="${questionDto.questionCnt}" id ="questionCnt"></span>
 		</div>
 	</div>
 
@@ -147,20 +147,20 @@ input[type="text"] {
 </body>
 <script type="text/javascript">
 $(".btn").click(function() {
-    var question_id = $("#question_id").text();
-    var question_ans = $("#answer").val();
+    var questionId = $("#questionId").text();
+    var questionAns = $("#answer").val();
     var realAns = $("#realAns").val();
-    var question_day = $("#question_day").val();
+    var questionDay = $("#questionDay").val();
     
     var realAnsArray = realAns.split(","); 
     var data = {
-        question_id: question_id,
-        question_ans: question_ans,
-        question_day : question_day
+        questionId: questionId,
+        questionAns: questionAns,
+        questionDay : questionDay
     };
     // 오답 체크
 	var flag = true; 
-    if (realAnsArray.includes(question_ans.trim())) {
+    if (realAnsArray.includes(questionAns.trim())) {
     	showModal("정답입니다. 기타 해석 : "+ "[" + realAns +"]");
     } else {
     	flag = false;
@@ -177,7 +177,7 @@ $(".btn").click(function() {
         	// 오답일 경우 틀린 횟수 증가
             if(!flag){
             	  $.ajax({
-                      url: '/api/word/wrongAnswer',
+                      url: '/api/word/wrong-answer',
                       type: 'POST',
                       data: data,
                       success: function(data) {
@@ -191,16 +191,16 @@ $(".btn").click(function() {
             
         	// 다음 문제가 있다면 다음 문제로 이동
             $.ajax({
-                url: '/api/word/nextCheck',
+                url: '/api/word/next-check',
                 type: 'POST',
                 data: data,
                 success: function(data) {
-                	question_id = data.question_id;
-                	question_day = data.question_day;
-                    if (data.question_id == null) {
+                	questionId = data.questionId;
+                	questionDay = data.questionDay;
+                    if (data.questionId == null) {
                         window.location.href = '/'; 
                     } else {
-                    	window.location.href = '/word/test?question_day=' + question_day + '&question_id=' + question_id;
+                    	window.location.href = '/word/test?questionDay=' + questionDay + '&questionId=' + questionId;
                     }
                 },
                 error: function(xhr, status, error) {

@@ -19,14 +19,11 @@ public class RestApiController {
 	@Autowired
 	private  QuestionService questionService;
 
-	//	@Autowired
-	//	private WordMapper wordMapper;
-
 
 	// 다음 문제가 있는지 여부 체크
-	@PostMapping("/nextCheck")
+	@PostMapping("/next-check")
 	public QuestionDto wordTest(QuestionDto questionDto) {
-		int nextQuestionId = questionDto.getQuestion_id()+1;
+		int nextQuestionId = questionDto.getQuestionId()+1;
 		questionDto = questionService.selectByQuestionId(nextQuestionId);
 		// 더이상 문제가 없으면 0 있으면 1
 		if( questionDto == null ) {
@@ -36,17 +33,17 @@ public class RestApiController {
 		}    	
 	}
 	// 	문제가 있는 날짜인지 체크
-	@PostMapping("/dayCheck")
+	@PostMapping("/day-check")
 	public QuestionDto dayCheck(QuestionDto questionDto) {
-		questionDto = questionService.dayCheck(questionDto.getQuestion_day());
+		questionDto = questionService.dayCheck(questionDto.getQuestionDay());
 		return questionDto;    		
 
 	}
 
 	// 오답 횟수 증가 
-	@PostMapping("/wrongAnswer")
+	@PostMapping("/wrong-answer")
 	public int wrongAnswer(QuestionDto questionDto) {
-		return questionService.wrongAnswer(questionDto.getQuestion_id());
+		return questionService.wrongAnswer(questionDto.getQuestionId());
 	}
 
 

@@ -12,9 +12,9 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 public class QuestionDto {
-	private int question_id; // 문제아이디
-	private String question_word; // 문제단어
-	private String question_ans; // 문제정답
-	private int question_cnt; // 틀린횟수
-	private int question_day  ; // 포함 Day
+	private int questionId; // 문제아이디
+	private String questionWord; // 문제단어
+	private String questionAns; // 문제정답
+	private int questionCnt; // 틀린횟수
+	private int questionDay  ; // 포함 Day
 }

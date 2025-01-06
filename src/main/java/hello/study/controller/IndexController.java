@@ -25,13 +25,13 @@ public class IndexController {
 
 
 	// 단어 테스트 Day 선택 화면 이동
-	@GetMapping("/testChoiceDay")
+	@GetMapping("/test-choice-day")
 	String testChoiceDay() {
-		return "testChoiceDay";
+		return "test-choice-day";
 	}
-	@GetMapping("/practiceChoiceDay")
+	@GetMapping("/practice-choice-day")
 	String testPractice() {
-		return "practiceChoiceDay";
+		return "practice-choice-day";
 	}
 
 
@@ -39,45 +39,34 @@ public class IndexController {
 	@GetMapping("/test")
 	String test(QuestionDto questionDto , Model model) {
 		questionDto = questionService.QuestionInfo(questionDto);
-		ExampleDto exampleDto = questionService.exampleDetail(questionDto.getQuestion_id());
+		ExampleDto exampleDto = questionService.exampleDetail(questionDto.getQuestionId());
 		model.addAttribute("questionDto", questionDto); 
 		model.addAttribute("exampleDto", exampleDto); 
-		return "wordTest";
+		return "word-test";
 	}
 
 
-	
-//	// 영단어 테스트 다음 문제
-//	@PostMapping("/test")
-//	String testNext(QuestionDto questionDto, Model model) {
-//	  	int nextQuestionId = questionDto.getQuestion_id()+1;
-//    	questionDto = questionService.selectByQuestionId(nextQuestionId);
-//		ExampleDto exampleDto = questionService.exampleDetail(questionDto.getQuestion_id());
-//		model.addAttribute("questionDto", questionDto); 
-//		model.addAttribute("exampleDto", exampleDto); 
-//		return "wordTest";
-//	}
 
 	// 단어 연습 문제
 	@GetMapping("/practice")	
 	String wordpractice(QuestionDto questionDto , Model model) {
 		questionDto = questionService.QuestionInfo(questionDto);
-		ExampleDto exampleDto = questionService.exampleDetail(questionDto.getQuestion_id());
+		ExampleDto exampleDto = questionService.exampleDetail(questionDto.getQuestionId());
 		model.addAttribute("questionDto", questionDto); 
 		model.addAttribute("exampleDto", exampleDto); 
-		return "wordPractice";
+		return "word-practice";
 	}
 
-	@GetMapping("/wordAdd")
+	@GetMapping("word-add")
 	public String wordAddPage() {
-		return "wordAdd"; 
+		return "word-add"; 
 	}
-	@PostMapping("/wordAdd")
+	@PostMapping("/word-add")
 	public String wordAddSubmit(QuestionDto questionDto, ExampleDto exampleDto) {
-		String question_ans = questionDto.getQuestion_ans();
-		question_ans = question_ans.replaceAll(" ", "");
-		question_ans = question_ans.trim();
-		questionDto.setQuestion_ans(question_ans);
+		String questionAns = questionDto.getQuestionAns();
+		questionAns = questionAns.replaceAll(" ", "");
+		questionAns = questionAns.trim();
+		questionDto.setQuestionAns(questionAns);
 		questionService.addQuestionWithExamples(questionDto, exampleDto);
 		return "redirect:/"; 
 	}

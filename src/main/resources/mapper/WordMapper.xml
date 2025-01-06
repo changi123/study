@@ -5,47 +5,46 @@
 	<!-- 단어추가 -->
 	<insert id="insertQuestion"
 		parameterType="hello.study.dto.QuestionDto">
-		INSERT INTO question (question_word, question_ans,
-		question_cnt , question_day)
-		VALUES (#{question_word}, #{question_ans},
-		#{question_cnt} , #{question_day})
+		INSERT INTO question (questionWord, questionAns,
+		questionCnt , questionDay)
+		VALUES (#{questionWord}, #{questionAns},
+		#{questionCnt} , #{questionDay})
 	</insert>
 
 	<!-- 단어에 대한 예문 추가 -->
 	<insert id="insertExample"
 		parameterType="hello.study.dto.ExampleDto">
-		INSERT INTO Example (question_id, example_detail)
+		INSERT INTO Example (questionId, exampleDetail)
 		VALUES
-		(#{question_id}, #{example_detail})
+		(#{questionId}, #{exampleDetail})
 	</insert>
 
 	<!-- 틀린 횟수 증가 -->
 	<update id="wrongAnswer"
 		parameterType="hello.study.dto.QuestionDto">
 		UPDATE question
-		SET question_cnt = #{question_cnt}
+		SET questionCnt = #{questionCnt}
 		WHERE
-		question_id = #{question_id}
-
+		questionId = #{questionId}
 	</update>
+
 	<!-- 특정 아이디 단어 조회 -->
 	<select id="selectByQuestionId"
 		resultType="hello.study.dto.QuestionDto" parameterType="Integer">
 		SELECT * FROM
-		question WHERE question_id = #{question_id}
+		question WHERE questionId = #{questionId}
 	</select>
 
 	<!-- 단어아이디 랜덤번호뽑기 -->
 	<select id="randomQuestion" resultType="Integer">
-		SELECT question_id FROM
+		SELECT questionId FROM
 		question ORDER BY RAND() LIMIT 1;
 	</select>
 
-
 	<!-- 가장 최근에 추가된 단어아이디 가져오기 -->
 	<select id="selectRecentQuestion" resultType="Integer">
-		SELECT question_id
-		FROM question ORDER BY question_id DESC LIMIT 1
+		SELECT questionId
+		FROM question ORDER BY questionId DESC LIMIT 1
 	</select>
 
 	<!-- 단어 전체 조회 -->
@@ -58,41 +57,37 @@
 	<select id="exampleDetail"
 		resultType="hello.study.dto.ExampleDto" parameterType="Integer">
 		SELECT * FROM
-		example WHERE question_id = #{question_id}
+		example WHERE questionId = #{questionId}
 	</select>
 
-
-
-	<!-- 안쓰는지 ㅊ ㅔ크  -->
+	<!-- 안쓰는지 체크 -->
 	<!-- 테스트 문제 조회 -->
-	<select id="QuestionInfo"
+	<select id="questionInfo"
 		resultType="hello.study.dto.QuestionDto"
 		parameterType="hello.study.dto.QuestionDto">
 		SELECT * FROM
-		question WHERE question_id = #{question_id} AND question_day = #{question_day} 
+		question WHERE questionId = #{questionId} AND questionDay = #{questionDay}
 	</select>
-	
-	
-	
+
 	<!-- 안쓰는지 체크 -->
 	<!-- 연습 할 때 첫 페이지 단어 -->
-	<select id="QuestionPracticeInfo"
+	<select id="questionPracticeInfo"
 		resultType="hello.study.dto.QuestionDto"
 		parameterType="java.lang.Integer">
 		SELECT * FROM
-		question WHERE question_day = #{question_day} ORDER BY question_cnt desc
+		question WHERE questionDay = #{questionDay} ORDER BY questionCnt desc
 		LIMIT 1;
 	</select>
-	
+
 	<!-- 해당하는 날짜에 문제가 있는지 체크 -->
-	<select id="dayCheck"
-		resultType="hello.study.dto.QuestionDto"
+	<select id="dayCheck" resultType="hello.study.dto.QuestionDto"
 		parameterType="java.lang.Integer">
 		SELECT *
-		FROM question 
-		WHERE question_day = #{question_day}
-		LIMIT 1 
+		FROM question
+		WHERE questionDay = #{questionDay}
+		LIMIT 1
 	</select>
+
 
 
 </mapper>

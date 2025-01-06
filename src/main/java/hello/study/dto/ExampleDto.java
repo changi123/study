@@ -12,8 +12,8 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ExampleDto {
-	private int example_id; // 예문아이디
-	private int question_id; // 문제아이디
-	private String example_detail; // 예문내용
+	private int exampleId; // 예문아이디
+	private int questionId; // 문제아이디
+	private String exampleDetail; // 예문내용
 	
 }

@@ -20,19 +20,19 @@ public interface WordMapper {
 	int selectRecentQuestion();
 	
 	// 단어아이디에 따른 단어
-	QuestionDto selectByQuestionId(int question_id);
+	QuestionDto selectByQuestionId(int questionId);
 
-	ExampleDto exampleDetail(int question_id);
+	ExampleDto exampleDetail(int questionId);
 
 	int wrongAnswer(QuestionDto questionDto);
 
 	// 문제 아이디와 날짜 정보로 문제 조회
-	QuestionDto QuestionInfo(@Param("question_id") int question_id , @Param("question_day") int question_day);
+	QuestionDto questionInfo(@Param("questionId") int questionId , @Param("questionDay") int questionDay);
 
-	QuestionDto QuestionPracticeInfo(int question_day);
+	QuestionDto questionPracticeInfo(int questionDay);
 	
 	// 해당하는 날짜에 문제가 있는지 체크
-	QuestionDto dayCheck(int question_day);
+	QuestionDto dayCheck(int questionDay);
 
 //	void selectQuestion();
 
