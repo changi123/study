@@ -17,7 +17,7 @@ body {
 }
 
 .container {
-    margin-top: 50px;
+    margin-top: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -68,14 +68,14 @@ input, textarea {
 <body>
     <div class="container">
         <h1>단어 추가</h1>
-        <form action="/word/word-add" method="POST">
+         <form action="/word/word-add" method="POST">
             <div>
                 <label for="word">단어</label>
                 <input type="text" id="questionWord" name="questionWord" placeholder="단어를 입력하세요" required>
             </div>
             <div>
                 <label for="meaning">단어 뜻</label>
-                <input type="text" id="questionAns" name="questionAns" placeholder=",구분으로 단어 뜻을 나열해주세요." required>
+                <textarea  id="questionAns" name="questionAns" placeholder=",구분으로 단어 뜻을 나열해주세요. ex)홍찬기1,홍찬기2" required></textarea>
             </div>
             <div>
                 <label for="example">예문</label>
@@ -87,7 +87,7 @@ input, textarea {
             </div>
             <div>
                 <label for="example">예문 문법</label>
-                <textarea id="exampleGrammar" name="exampleGrammar" rows="4" placeholder="예문에 들어간 문법을 입력하세요. 공백없이 단어 뜻은 ;을 구분으로 문법에 따라, 구분으로" required></textarea>
+                <textarea id="exampleGrammar" name="exampleGrammar" rows="4" placeholder="예문에 들어간 문법을 입력하세요. 뜻은 ;을 구분으로 다음은 ,구분으로 뒤에 공백없이 ex)(1) has: 있다; 동사,(2) several requirements: 여러 가지 요구 사항; 명사구로 목적어 역할" required></textarea>
             </div>
             <div>
                 <label for="day">포함Day</label>
