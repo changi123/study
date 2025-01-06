@@ -98,16 +98,16 @@ button {
 	             type: 'POST',
 	             data: data,
 	             success: function(data) {
-	    			
+	    			question_id = data.question_id;
 	            	 if( data ){
-	            		 window.location.href = '/word/practice?question_day=' + questionDay + '&question_id=' + 1;
+	            		 window.location.href = '/word/practice?question_day=' + questionDay + '&question_id=' + question_id;
 	            	 } else{
 	            		 alert("아직 등록된 문제가 없습니다.");
-	            	 }
+	            	 } 
 		               
 	             },
 	             error: function(xhr, status, error) {
-	               
+	            	 alert("아직 등록된 문제가 없습니다.");
 	             }
 	         });
 		})
