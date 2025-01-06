@@ -93,9 +93,18 @@
 		parameterType="hello.study.dto.QuestionDto">
 		SELECT questionId
 		FROM question
-		WHERE questionId > #{questionId} AND questionDay = #{questionDay}
+		WHERE questionId >
+		#{questionId} AND questionDay = #{questionDay}
 		ORDER BY questionId asc
 		LIMIT 1
+	</select>
+
+	<!-- 다음 문제 있는지 체크 -->
+	<select id="cntCheck" resultType="Integer"
+		parameterType="String">
+		SELECT COUNT(*)
+		FROM question
+		WHERE LOWER(TRIM(questionWord)) = LOWER(#{questionWord})
 	</select>
 
 </mapper>

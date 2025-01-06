@@ -70,7 +70,7 @@ h1 {
 		<button class="btn" id="wordAddBtn">단어 추가</button>
 
 		<!-- 단어 목록 보기 버튼 -->
-		<button class="btn" id="viewWordsBtn">틀린 횟수별 단어 보기</button>
+		<button class="btn" id="sentenceWordsBtn">두 단어 이상으로 된 표현 연습</button>
 	</div>
 
 	<!-- 하단에 이미지 추가 -->
@@ -92,8 +92,29 @@ h1 {
 		window.location.href = '/word/word-add';
 	});
 
-	$('#viewWordsBtn').click(function() {
-		window.location.href = '/';
+	$('#sentenceWordsBtn').click(function() {
+		var questionDay = 0;
+		var data  = {
+				questionDay : questionDay
+		}
+		// 해당하는 날짜 문제가 있는지 체크
+		 $.ajax({
+            url: '/api/word/day-check',
+            type: 'POST',
+            data: data,
+            success: function(data) {
+   			questionId = data.questionId;
+           	 if( data ){
+           		 window.location.href = '/word/practice?questionDay=' + questionDay + '&questionId=' + questionId;
+           	 } else{
+           		 alert("아직 등록된 문제가 없습니다.");
+           	 } 
+	               
+            },
+            error: function(xhr, status, error) {
+           	 alert("아직 등록된 문제가 없습니다.");
+            }
+        });
 	});
 </script>
 </html>

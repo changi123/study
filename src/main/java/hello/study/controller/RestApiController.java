@@ -1,10 +1,11 @@
 package hello.study.controller;
 
+import java.util.Arrays;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import hello.study.dto.ExampleDto;
@@ -18,8 +19,6 @@ import hello.study.service.QuestionService;
 public class RestApiController {
 	@Autowired
 	private  QuestionService questionService;
-	@Autowired
-	private  WordMapper wordMapper;
 
 
 	// 다음 문제가 있는지 여부 체크
@@ -45,6 +44,13 @@ public class RestApiController {
 	public int wrongAnswer(QuestionDto questionDto) {
 		return questionService.wrongAnswer(questionDto.getQuestionId());
 	}
+	// 추가사항 저장 
+	@PostMapping("/additional-information")
+	public int additionalInformation(@RequestParam("wordAddString") String wordAddString, QuestionDto questionDto, ExampleDto exampleDto) {
+		questionService.additionalInformation(wordAddString,questionDto,exampleDto);
+		return 1;
+	}
+	
 
 
 }

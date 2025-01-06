@@ -61,6 +61,7 @@ public class IndexController {
 	public String wordAddPage() {
 		return "word-add"; 
 	}
+	// 단어 주가
 	@PostMapping("/word-add")
 	public String wordAddSubmit(QuestionDto questionDto, ExampleDto exampleDto) {
 		String questionAns = questionDto.getQuestionAns();

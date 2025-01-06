@@ -36,6 +36,8 @@ public interface WordMapper {
 
 	Integer selectIdDayDesc(@Param("questionId") int questionId, @Param("questionDay") int questionDay);
 
+	int cntCheck(String questionWord);
+
 //	void selectQuestion();
 
 

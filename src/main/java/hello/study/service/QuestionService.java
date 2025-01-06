@@ -1,5 +1,7 @@
 package hello.study.service;
 
+import java.util.Arrays;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,6 +14,7 @@ import hello.study.mapper.WordMapper;
 public class QuestionService {
 	@Autowired
 	private WordMapper wordMapper;
+	
 
 	
 	// 단어 아이디별 정보 조회 
@@ -60,6 +63,41 @@ public class QuestionService {
 
 	public Integer selectIdDayDesc(int questionId, int questionDay) {
 		return wordMapper.selectIdDayDesc(questionId,questionDay);
+	}
+
+	public void additionalInformation(String wordAddString, QuestionDto questionDto, ExampleDto exampleDto) {
+		wordAddString = wordAddString.trim();
+		String [] arr = wordAddString.split(",");
+		
+		for(String s : arr) {
+			
+			String [] sArr = s.split(":");
+			
+			// 단어
+			String questionWord = sArr[0].trim();
+			// 단어 뜻
+			String questionAns = sArr[1].trim();
+			
+			// 먼저 이미 있는 데이터인지 확인하자
+			int cntCheck = wordMapper.cntCheck(questionWord);
+			
+			// 조회 된 데이터가 없다면 인서트하자
+			if( cntCheck == 0 ) {
+
+				questionDto.setQuestionWord(questionWord);
+				questionDto.setQuestionAns(questionAns);
+				
+				wordMapper.insertQuestion(questionDto);
+				
+				int questionNum = wordMapper.selectRecentQuestion();
+				
+				exampleDto.setQuestionId(questionNum);
+				wordMapper.insertExample(exampleDto);
+		
+			}
+			
+		}
+		
 	}
 
 	
