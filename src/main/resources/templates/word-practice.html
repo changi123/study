@@ -132,6 +132,10 @@ input[type="text"] {
 		<div class="input-container">
 			<input type="text" id="answer" placeholder="정답을 입력하세요">
 		</div>
+		
+		<div class="input-container">
+			<input type="text" id="example" placeholder="예문 해석을 입력하세요">
+		</div>
 
 		<button class="btn">확인</button>
 		<button class="btn" id="homeButton" onclick="window.location.href=`/`">홈으로</button>
@@ -162,6 +166,9 @@ $(".btn").click(function() {
     var questionId = $("#questionId").text();
     var questionAns = $("#answer").val();
     var realAns = $("#realAns").val();
+    
+    // 내가 입력한 예문 해석
+    var example = $("#example").val(); 
     
     var questionDay = $("#questionDay").val();
     // 예문 
@@ -197,14 +204,16 @@ $(".btn").click(function() {
         		"<br> 1. 단어 해석 <br>" + "[" + realAns + "] <br>" +
         		"<br> 2. 예문 <br>" + "[" + exampleDetail + "] <br>" +
         		"<br> 3. 예문에 들어간 문법 <br> " + grammarFormatted + " <br>" +
-                "<br> 4. 예문 해석 <br>" + "[" + exampleAns + "] <br>"); 
+        		"<br> 4. 내가 해석한 예문 <br> " + example + " <br>" +
+                "<br> 5. 예문 해석 <br>" + "[" + exampleAns + "] <br>"); 
     } else {
         
         showModal("오답입니다! <br>"+
-        		"<br> 1. 단어 해석 <br>" + "[" + realAns + "] <br>" +
+          		"<br> 1. 단어 해석 <br>" + "[" + realAns + "] <br>" +
         		"<br> 2. 예문 <br>" + "[" + exampleDetail + "] <br>" +
         		"<br> 3. 예문에 들어간 문법 <br> " + grammarFormatted + " <br>" +
-                "<br> 4. 예문 해석 <br>" + "[" + exampleAns + "] <br>"); 
+        		"<br> 4. 내가 해석한 예문 <br> " + example + " <br>" +
+                "<br> 5. 예문 해석 <br>" + "[" + exampleAns + "] <br>"); 
     }
 
     function showModal(message) {
