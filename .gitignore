@@ -37,3 +37,9 @@ out/
 
 ### VS Code ###
 .vscode/
+
+# 이미지 파일 무시
+images/
+*.jpg
+*.png
+*.gif
