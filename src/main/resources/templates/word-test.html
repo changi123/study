@@ -170,6 +170,8 @@ $(".btn").click(function() {
     };
     // 오답 체크
 	var flag = true; 
+	questionAns = questionAns.replaceAll(" ","");
+	alert(questionAns);
     if (realAnsArray.includes(questionAns.trim())) {
         showModal("정답입니다! <br>"+
         		"<br> 1. 단어 해석 <br>" + "[" + realAns + "] <br>" +

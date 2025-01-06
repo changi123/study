@@ -162,13 +162,19 @@ $(".btn").click(function() {
    	
     var realAnsArray = realAns.split(","); 
     
+    // 정답 공백제거
+    for( var i = 0  ;  i < realAnsArray.length ; i++){
+    	realAnsArray[i] = realAnsArray[i].replaceAll(" ","");
+    }
+    
   
     var data = {
         questionId: questionId,
         questionAns: questionAns
     };
 	
-    
+    // 입력한 정답 공백 제거 
+	questionAns = questionAns.replaceAll(" ","");
     if (realAnsArray.includes(questionAns.trim())) {
         showModal("정답입니다! <br>"+
         		"<br> 1. 단어 해석 <br>" + "[" + realAns + "] <br>" +
