@@ -6,6 +6,8 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <style>
+/* 기존 스타일 유지 */
+
 body {
 	font-family: Arial, sans-serif;
 	text-align: center;
@@ -19,6 +21,13 @@ body {
 	border: 1px solid #ccc;
 	border-radius: 10px;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	position: relative; /* 추가: container 내부에서 절대 위치를 잡을 수 있게 함 */
+}
+
+#homeButton {
+	position: absolute;
+	top: 20px;
+	left: 20px;
 }
 
 .question {
@@ -58,6 +67,7 @@ input[type="text"] {
 	color: #555;
 }
 
+
 /* 모달 */
 .modal {
 	display: none;
@@ -71,7 +81,7 @@ input[type="text"] {
 	padding-top: 60px;
 }
 
-/* 모달 내용 스타일  */
+/* 모달 내용 스타일 */
 .modal-content {
 	background-color: #fefefe;
 	margin: -1% auto;
@@ -88,7 +98,7 @@ input[type="text"] {
 	align-items: center;
 }
 
-/* 확인 버튼  */
+/* 확인 버튼 */
 #okButton {
 	background-color: #007bff;
 	color: white;
@@ -100,6 +110,7 @@ input[type="text"] {
 	margin-top: 20px;
 }
 </style>
+
 </head>
 <body>
 	<div class="container">
@@ -123,6 +134,7 @@ input[type="text"] {
 		</div>
 
 		<button class="btn">확인</button>
+		<button class="btn" id="homeButton" onclick="window.location.href=`/`">홈으로</button>
 		<input type="hidden" id="realAns"
 			th:value="${questionDto.questionAns}"> 
 			<input type="hidden"

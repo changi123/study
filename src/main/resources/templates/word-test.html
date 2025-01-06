@@ -19,7 +19,15 @@ body {
 	border: 1px solid #ccc;
 	border-radius: 10px;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	position: relative; /* 추가: container 내부에서 절대 위치를 잡을 수 있게 함 */
 }
+
+#homeButton {
+	position: absolute;
+	top: 20px;
+	left: 20px;
+}
+
 
 .question {
 	font-size: 24px;
@@ -123,7 +131,7 @@ input[type="text"] {
 		</div>
 
 		<button class="btn">확인</button>
-
+		<button class="btn" id="homeButton" onclick="window.location.href=`/`">홈으로</button>
 		<!-- 실제 정답 -->
 		<input type="hidden" id="realAns"
 			th:value="${questionDto.questionAns}"> 
