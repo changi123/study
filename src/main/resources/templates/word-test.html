@@ -77,8 +77,8 @@ input[type="text"] {
 	margin: 5% auto;
 	padding: 30px;
 	border: 1px solid #888;
-	width: 300px;
-	height: 300px;
+	width: 450px;
+	height: 450px;
 	box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 	border-radius: 10px;
 	text-align: center;
@@ -171,7 +171,11 @@ $(".btn").click(function() {
     // 오답 체크
 	var flag = true; 
 	questionAns = questionAns.replaceAll(" ","");
-	alert(questionAns);
+	
+    // 정답 공백제거
+    for( var i = 0  ;  i < realAnsArray.length ; i++){
+    	realAnsArray[i] = realAnsArray[i].replaceAll(" ","");
+    }
     if (realAnsArray.includes(questionAns.trim())) {
         showModal("정답입니다! <br>"+
         		"<br> 1. 단어 해석 <br>" + "[" + realAns + "] <br>" +

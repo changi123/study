@@ -77,8 +77,8 @@ input[type="text"] {
 	margin: 5% auto;
 	padding: 30px;
 	border: 1px solid #888;
-	width: 400px;
-	height: 400px;
+	width: 550px;
+	height: 450px;
 	box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 	border-radius: 10px;
 	text-align: center;
@@ -167,7 +167,10 @@ $(".btn").click(function() {
     	realAnsArray[i] = realAnsArray[i].replaceAll(" ","");
     }
     
-  
+    // 문법 쉼표를 기준으로 정리
+    var grammarItems = exampleGrammar.split(",");  
+    var grammarFormatted = grammarItems.join("<br>");  
+
     var data = {
         questionId: questionId,
         questionAns: questionAns
@@ -179,14 +182,14 @@ $(".btn").click(function() {
         showModal("정답입니다! <br>"+
         		"<br> 1. 단어 해석 <br>" + "[" + realAns + "] <br>" +
         		"<br> 2. 예문 <br>" + "[" + exampleDetail + "] <br>" +
-        		"<br> 3. 예문에 들어간 문법 <br>" + "[" + exampleGrammar + "] <br>" +
+        		"<br> 3. 예문에 들어간 문법 <br> " + grammarFormatted + " <br>" +
                 "<br> 4. 예문 해석 <br>" + "[" + exampleAns + "] <br>"); 
     } else {
         
         showModal("오답입니다! <br>"+
         		"<br> 1. 단어 해석 <br>" + "[" + realAns + "] <br>" +
         		"<br> 2. 예문 <br>" + "[" + exampleDetail + "] <br>" +
-        		"<br> 3. 예문에 들어간 문법 <br>" + "[" + exampleGrammar + "] <br>" +
+        		"<br> 3. 예문에 들어간 문법 <br> " + grammarFormatted + " <br>" +
                 "<br> 4. 예문 해석 <br>" + "[" + exampleAns + "] <br>"); 
     }
 
