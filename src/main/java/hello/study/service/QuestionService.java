@@ -58,6 +58,10 @@ public class QuestionService {
 		return wordMapper.dayCheck(questionDay);
 	}
 
+	public Integer selectIdDayDesc(int questionId, int questionDay) {
+		return wordMapper.selectIdDayDesc(questionId,questionDay);
+	}
+
 	
 	
 

@@ -130,7 +130,8 @@ input[type="text"] {
 			<input
 			type="hidden" id="exampleGrammar"
 			th:value="${exampleDto.exampleGrammar}">
-
+		<input type="hidden" id="questionDay"
+			th:value="${questionDto.questionDay}">
 		<div class="info">
 			틀린 횟수: <span th:text="${questionDto.questionCnt}" id="questionCnt"></span>
 		</div>
@@ -150,7 +151,7 @@ $(".btn").click(function() {
     var questionAns = $("#answer").val();
     var realAns = $("#realAns").val();
     
-   
+    var questionDay = $("#questionDay").val();
     // 예문 
     var exampleDetail = $("#exampleDetail").text();
      
@@ -173,7 +174,8 @@ $(".btn").click(function() {
 
     var data = {
         questionId: questionId,
-        questionAns: questionAns
+        questionAns: questionAns,
+        questionDay : questionDay
     };
 	
     // 입력한 정답 공백 제거 
@@ -208,7 +210,7 @@ $(".btn").click(function() {
                 data: data,
                 success: function(data) {
                     questionId = data.questionId;
-                    questionDay = data.questionDay;
+                    questionDay = questionDay;
                     if (data.questionId == null) {
                         window.location.href = '/'; 
                     } else {

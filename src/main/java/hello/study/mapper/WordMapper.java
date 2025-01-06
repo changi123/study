@@ -34,6 +34,8 @@ public interface WordMapper {
 	// 해당하는 날짜에 문제가 있는지 체크
 	QuestionDto dayCheck(int questionDay);
 
+	Integer selectIdDayDesc(@Param("questionId") int questionId, @Param("questionDay") int questionDay);
+
 //	void selectQuestion();
 
 

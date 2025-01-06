@@ -14,9 +14,11 @@
 	<!-- 단어에 대한 예문 추가 -->
 	<insert id="insertExample"
 		parameterType="hello.study.dto.ExampleDto">
-		INSERT INTO Example (questionId, exampleDetail)
+		INSERT INTO Example (questionId, exampleDetail ,
+		exampleAns, exampleGrammar)
 		VALUES
-		(#{questionId}, #{exampleDetail})
+		(#{questionId}, #{exampleDetail} ,
+		#{exampleAns} , #{exampleGrammar})
 	</insert>
 
 	<!-- 틀린 횟수 증가 -->
@@ -35,11 +37,6 @@
 		question WHERE questionId = #{questionId}
 	</select>
 
-	<!-- 단어아이디 랜덤번호뽑기 -->
-	<select id="randomQuestion" resultType="Integer">
-		SELECT questionId FROM
-		question ORDER BY RAND() LIMIT 1;
-	</select>
 
 	<!-- 가장 최근에 추가된 단어아이디 가져오기 -->
 	<select id="selectRecentQuestion" resultType="Integer">
@@ -66,7 +63,8 @@
 		resultType="hello.study.dto.QuestionDto"
 		parameterType="hello.study.dto.QuestionDto">
 		SELECT * FROM
-		question WHERE questionId = #{questionId} AND questionDay = #{questionDay}
+		question WHERE questionId = #{questionId}
+		AND questionDay = #{questionDay}
 	</select>
 
 	<!-- 안쓰는지 체크 -->
@@ -75,7 +73,8 @@
 		resultType="hello.study.dto.QuestionDto"
 		parameterType="java.lang.Integer">
 		SELECT * FROM
-		question WHERE questionDay = #{questionDay} ORDER BY questionCnt desc
+		question WHERE questionDay = #{questionDay}
+		ORDER BY questionCnt desc
 		LIMIT 1;
 	</select>
 
@@ -89,5 +88,14 @@
 	</select>
 
 
+	<!-- 다음 문제 있는지 체크 -->
+	<select id="selectIdDayDesc" resultType="Integer"
+		parameterType="hello.study.dto.QuestionDto">
+		SELECT questionId
+		FROM question
+		WHERE questionId > #{questionId} AND questionDay = #{questionDay}
+		ORDER BY questionId asc
+		LIMIT 1
+	</select>
 
 </mapper>

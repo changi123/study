@@ -18,19 +18,19 @@ import hello.study.service.QuestionService;
 public class RestApiController {
 	@Autowired
 	private  QuestionService questionService;
+	@Autowired
+	private  WordMapper wordMapper;
 
 
 	// 다음 문제가 있는지 여부 체크
 	@PostMapping("/next-check")
 	public QuestionDto wordTest(QuestionDto questionDto) {
-		int nextQuestionId = questionDto.getQuestionId()+1;
-		questionDto = questionService.selectByQuestionId(nextQuestionId);
-		// 더이상 문제가 없으면 0 있으면 1
-		if( questionDto == null ) {
-			return null ;
+		Integer nextQuestionId = questionService.selectIdDayDesc(questionDto.getQuestionId(),questionDto.getQuestionDay());
+		if( nextQuestionId == null ) {
+			return null;
 		} else {
-			return questionDto;    		
-		}    	
+			return  questionService.selectByQuestionId(nextQuestionId);
+		}
 	}
 	// 	문제가 있는 날짜인지 체크
 	@PostMapping("/day-check")
