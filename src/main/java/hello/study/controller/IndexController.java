@@ -68,12 +68,16 @@ public class IndexController {
 		return "wordPractice";
 	}
 
-	@GetMapping("/add")
+	@GetMapping("/wordAdd")
 	public String wordAddPage() {
-		return "word_add"; 
+		return "wordAdd"; 
 	}
-	@PostMapping("/add")
+	@PostMapping("/wordAdd")
 	public String wordAddSubmit(QuestionDto questionDto, ExampleDto exampleDto) {
+		String question_ans = questionDto.getQuestion_ans();
+		question_ans = question_ans.replaceAll(" ", "");
+		question_ans = question_ans.trim();
+		questionDto.setQuestion_ans(question_ans);
 		questionService.addQuestionWithExamples(questionDto, exampleDto);
 		return "redirect:/"; 
 	}
