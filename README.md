@@ -6,8 +6,7 @@
 #### SpringBoot + Mybatis 연동완료
 
 ## ERD ( 계속해서 추가하자 ) 
-#### 2025-01-06 
-#### ㄴ exampleAns ( 예문해석 ) + exampleGrammar ( 예문 문법 ) 컬럼 추가 
+#### 2025-01-06 : exampleAns ( 예문해석 ) + exampleGrammar ( 예문 문법 ) 컬럼 추가 
 ![image](https://github.com/user-attachments/assets/40ac5eb0-f88d-4787-aaa4-798fb7d37d57)
 
 
