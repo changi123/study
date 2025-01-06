@@ -115,7 +115,7 @@ input[type="text"] {
 		</div>
 
 		<div class="question">
-			예문: <span th:text="${exampleDto.exampleDetail}" id="questionDetail"></span>
+			예문: <span th:text="${exampleDto.exampleDetail}" id="exampleDetail"></span>
 		</div>
 
 		<div class="input-container">
@@ -123,17 +123,20 @@ input[type="text"] {
 		</div>
 
 		<button class="btn">확인</button>
-		
+
 		<!-- 실제 정답 -->
 		<input type="hidden" id="realAns"
-			th:value="${questionDto.questionAns}">
+			th:value="${questionDto.questionAns}"> 
 			
-			<!-- 선택 Day -->
-		<input type="hidden" id="question_day"
+		<input type="hidden"
+			id="exampleAns" th:value="${exampleDto.exampleAns}"> 
+			
+		<!-- 선택 Day -->
+		<input type="hidden" id="questionDay"
 			th:value="${questionDto.questionDay}">
 
 		<div class="info">
-			틀린 횟수: <span th:text="${questionDto.questionCnt}" id ="questionCnt"></span>
+			틀린 횟수: <span th:text="${questionDto.questionCnt}" id="questionCnt"></span>
 		</div>
 	</div>
 
@@ -152,6 +155,13 @@ $(".btn").click(function() {
     var realAns = $("#realAns").val();
     var questionDay = $("#questionDay").val();
     
+    
+    // 예문 
+    var exampleDetail = $("#exampleDetail").text();
+     
+    // 예문 해석
+    var exampleAns = $("#exampleAns").val();
+    
     var realAnsArray = realAns.split(","); 
     var data = {
         questionId: questionId,
@@ -161,16 +171,22 @@ $(".btn").click(function() {
     // 오답 체크
 	var flag = true; 
     if (realAnsArray.includes(questionAns.trim())) {
-    	showModal("정답입니다. 기타 해석 : "+ "[" + realAns +"]");
+        showModal("정답입니다! <br>"+
+        		"<br> 1. 단어 해석 <br>" + "[" + realAns + "] <br>" +
+        		"<br> 2. 예문 <br>" + "[" + exampleDetail + "] <br>" +
+                "<br> 3. 예문 해석 <br>" + "[" + exampleAns + "] <br>"); 
     } else {
     	flag = false;
-    	showModal("오답입니다. 정답은 ["+ $("#realAns").val()+"]");
+        showModal("오답입니다! <br>"+
+        		"<br> 1. 단어 해석 <br>" + "[" + realAns + "] <br>" +
+        		"<br> 2. 예문 <br>" + "[" + exampleDetail + "] <br>" +
+                "<br> 3. 예문 해석 <br>" + "[" + exampleAns + "] <br>"); 
     }
 
     function showModal(message) {
         var modal = document.getElementById("alertModal");
         var messageElement = document.getElementById("alertMessage");
-        messageElement.textContent = message;
+        messageElement.innerHTML = message; 
         modal.style.display = "block";
         document.getElementById("okButton").onclick = function() {
         modal.style.display = "none";

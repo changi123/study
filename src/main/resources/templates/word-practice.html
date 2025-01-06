@@ -77,8 +77,8 @@ input[type="text"] {
 	margin: 5% auto;
 	padding: 30px;
 	border: 1px solid #888;
-	width: 300px;
-	height: 300px;
+	width: 400px;
+	height: 400px;
 	box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 	border-radius: 10px;
 	text-align: center;
@@ -124,10 +124,15 @@ input[type="text"] {
 
 		<button class="btn">확인</button>
 		<input type="hidden" id="realAns"
-			th:value="${questionDto.questionAns}">
+			th:value="${questionDto.questionAns}"> 
+			<input type="hidden"
+			id="exampleAns" th:value="${exampleDto.exampleAns}"> 
+			<input
+			type="hidden" id="exampleGrammar"
+			th:value="${exampleDto.exampleGrammar}">
 
 		<div class="info">
-			틀린 횟수: <span th:text="${questionDto.questionCnt}" id ="questionCnt"></span>
+			틀린 횟수: <span th:text="${questionDto.questionCnt}" id="questionCnt"></span>
 		</div>
 	</div>
 
@@ -145,40 +150,60 @@ $(".btn").click(function() {
     var questionAns = $("#answer").val();
     var realAns = $("#realAns").val();
     
+   
+    // 예문 
+    var exampleDetail = $("#exampleDetail").text();
+     
+    // 예문 해석
+    var exampleAns = $("#exampleAns").val();
+    
+    // 예문 문법
+    var exampleGrammar = $("#exampleGrammar").val();
+   	
     var realAnsArray = realAns.split(","); 
     
-    
+  
     var data = {
         questionId: questionId,
         questionAns: questionAns
     };
-
+	
+    
     if (realAnsArray.includes(questionAns.trim())) {
-    	showModal("정답입니다. 기타 해석 : "+ "[" + realAns +"]");
+        showModal("정답입니다! <br>"+
+        		"<br> 1. 단어 해석 <br>" + "[" + realAns + "] <br>" +
+        		"<br> 2. 예문 <br>" + "[" + exampleDetail + "] <br>" +
+        		"<br> 3. 예문에 들어간 문법 <br>" + "[" + exampleGrammar + "] <br>" +
+                "<br> 4. 예문 해석 <br>" + "[" + exampleAns + "] <br>"); 
     } else {
-    	showModal("오답입니다. 정답은 ["+ $("#realAns").val()+"]");
+        
+        showModal("오답입니다! <br>"+
+        		"<br> 1. 단어 해석 <br>" + "[" + realAns + "] <br>" +
+        		"<br> 2. 예문 <br>" + "[" + exampleDetail + "] <br>" +
+        		"<br> 3. 예문에 들어간 문법 <br>" + "[" + exampleGrammar + "] <br>" +
+                "<br> 4. 예문 해석 <br>" + "[" + exampleAns + "] <br>"); 
     }
 
     function showModal(message) {
         var modal = document.getElementById("alertModal");
         var messageElement = document.getElementById("alertMessage");
-        messageElement.textContent = message;
+        messageElement.innerHTML = message; 
         modal.style.display = "block";
         document.getElementById("okButton").onclick = function() {
-        modal.style.display = "none";
+            modal.style.display = "none";
             
-         // 다음 문제가 있다면 다음 문제로 이동
+            // 다음 문제가 있다면 다음 문제로 이동
             $.ajax({
                 url: '/api/word/next-check',
                 type: 'POST',
                 data: data,
                 success: function(data) {
-                	questionId = data.questionId;
-                	questionDay = data.questionDay;
+                    questionId = data.questionId;
+                    questionDay = data.questionDay;
                     if (data.questionId == null) {
                         window.location.href = '/'; 
                     } else {
-                    	window.location.href = '/word/practice?questionDay=' + questionDay + '&questionId=' + questionId;
+                        window.location.href = '/word/practice?questionDay=' + questionDay + '&questionId=' + questionId;
                     }
                 },
                 error: function(xhr, status, error) {
@@ -193,6 +218,7 @@ $(".btn").click(function() {
             }
         }
     }
+
 });
 
 </script>

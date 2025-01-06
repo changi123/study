@@ -52,6 +52,7 @@ public class IndexController {
 	String wordpractice(QuestionDto questionDto , Model model) {
 		questionDto = questionService.QuestionInfo(questionDto);
 		ExampleDto exampleDto = questionService.exampleDetail(questionDto.getQuestionId());
+		System.out.println(exampleDto);
 		model.addAttribute("questionDto", questionDto); 
 		model.addAttribute("exampleDto", exampleDto); 
 		return "word-practice";
