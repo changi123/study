@@ -22,6 +22,12 @@ body {
 	gap: 15px;
 }
 
+.btn-container {
+	display: flex; /* 버튼들을 수평으로 나열 */
+	justify-content: center; /* 버튼들 사이에 간격을 균등하게 배치 */
+	gap: 15px; /* 버튼들 사이의 간격 설정 */
+}
+
 h1 {
 	color: #333;
 }
@@ -42,30 +48,39 @@ h1 {
 .btn:hover {
 	background-color: #0056b3;
 }
+
+/* 이미지 스타일 */
+#footerImage {
+	width: 80%; /* 적당한 크기로 설정 */
+	max-width: 600px; /* 최대 크기 설정 */
+	margin-top: 30px;
+}
 </style>
 </head>
 <body>
 	<h1>영어 공부 프로그램</h1>
-	<!-- 단어 테스트 버튼 -->
-	<button class="btn" id="wordTestBtn">단어 테스트</button>
-	
-	<!-- 단어 추가 버튼 -->
-	<button class="btn" id="wordPracticeBtn">단어 연습</button>
-	
-	<!-- 단어 추가 버튼 -->
-	<button class="btn" id="wordAddBtn">단어 추가</button>
+	<div class="btn-container">
+		<!-- 단어 테스트 버튼 -->
+		<button class="btn" id="wordTestBtn">단어 테스트</button>
 
-	<!-- 단어 목록 보기 버튼 -->
-	<button class="btn" id="viewWordsBtn">틀린 횟수별 단어 보기</button>
+		<!-- 단어 연습 버튼 -->
+		<button class="btn" id="wordPracticeBtn">단어 연습</button>
+
+		<!-- 단어 추가 버튼 -->
+		<button class="btn" id="wordAddBtn">단어 추가</button>
+
+		<!-- 단어 목록 보기 버튼 -->
+		<button class="btn" id="viewWordsBtn">틀린 횟수별 단어 보기</button>
+	</div>
+
+	<!-- 하단에 이미지 추가 -->
+	<img id="footerImage" src="/images/main-image.jpg" alt="메인 이미지">
 </body>
 <script type="text/javascript">
-
-
 	// 단어 테스트 페이지
 	$('#wordTestBtn').click(function() {
 		window.location.href = '/word/test-choice-day';
 	});
-	
 	
 	// 단어 연습 페이지
 	$('#wordPracticeBtn').click(function() {
