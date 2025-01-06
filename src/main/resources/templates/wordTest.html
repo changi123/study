@@ -103,7 +103,7 @@ input[type="text"] {
 </head>
 <body>
 	<div class="container">
-		<h1>영단어 테스트</h1>
+		<h3>영단어 테스트</h3>
 
 
 		<div class="question">
@@ -151,18 +151,20 @@ $(".btn").click(function() {
     var question_ans = $("#answer").val();
     var realAns = $("#realAns").val();
     var question_day = $("#question_day").val();
+    
+    var realAnsArray = realAns.split(","); 
     var data = {
         question_id: question_id,
         question_ans: question_ans,
         question_day : question_day
     };
-
-    // 정답이 아닌 경우 (틀린 횟수 증가시키기)
-    if (realAns != question_ans) {
-        showModal("정답이 아닙니다.");
+    // 오답 체크
+	var flag = true; 
+    if (realAnsArray.includes(question_ans.trim())) {
+    	showModal("정답입니다. 기타 해석 : "+ "[" + realAns +"]");
     } else {
-        // 정답일 경우
-        showModal("정답입니다!");
+    	flag = false;
+    	showModal("오답입니다. 정답은 ["+ $("#realAns").val()+"]");
     }
 
     function showModal(message) {
@@ -173,7 +175,7 @@ $(".btn").click(function() {
         document.getElementById("okButton").onclick = function() {
         modal.style.display = "none";
         	// 오답일 경우 틀린 횟수 증가
-            if( message == "정답이 아닙니다."){
+            if(!flag){
             	  $.ajax({
                       url: '/api/word/wrongAnswer',
                       type: 'POST',

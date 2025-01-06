@@ -103,7 +103,7 @@ input[type="text"] {
 </head>
 <body>
 	<div class="container">
-		<h1>영단어 연습</h1>
+		<h3>영단어 연습</h3>
 
 
 		<div class="question">
@@ -144,17 +144,19 @@ $(".btn").click(function() {
     var question_id = $("#question_id").text();
     var question_ans = $("#answer").val();
     var realAns = $("#realAns").val();
+    
+    var realAnsArray = realAns.split(","); 
+    
+    
     var data = {
         question_id: question_id,
         question_ans: question_ans
     };
 
-    // 정답이 아닌 경우 (틀린 횟수 증가시키기)
-    if (realAns != question_ans) {
-        showModal("오답입니다. 정답은 ["+ $("#realAns").val()+"]");
+    if (realAnsArray.includes(question_ans.trim())) {
+    	showModal("정답입니다. 기타 해석 : "+ "[" + realAns +"]");
     } else {
-        // 정답일 경우
-        showModal("정답입니다!");
+    	showModal("오답입니다. 정답은 ["+ $("#realAns").val()+"]");
     }
 
     function showModal(message) {
@@ -163,9 +165,8 @@ $(".btn").click(function() {
         messageElement.textContent = message;
         modal.style.display = "block";
         document.getElementById("okButton").onclick = function() {
-            modal.style.display = "none";
+        modal.style.display = "none";
             
-            // 다음 문제로 이동
          // 다음 문제가 있다면 다음 문제로 이동
             $.ajax({
                 url: '/api/word/nextCheck',
