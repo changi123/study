@@ -12,10 +12,12 @@ import hello.study.dto.ExampleDto;
 import hello.study.dto.QuestionDto;
 import hello.study.mapper.WordMapper;
 import hello.study.service.QuestionService;
+import lombok.extern.slf4j.Slf4j;
 
 
 @Controller
 @RequestMapping("/word")
+@Slf4j
 public class IndexController {
 	@Autowired
 	private  QuestionService questionService;
