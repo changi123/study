@@ -47,6 +47,9 @@ public class RestApiController {
 	// 추가사항 저장 
 	@PostMapping("/additional-information")
 	public int additionalInformation(@RequestParam("wordAddString") String wordAddString, QuestionDto questionDto, ExampleDto exampleDto) {
+		if (wordAddString.length() == 0) {
+			return 1; 
+		}
 		questionService.additionalInformation(wordAddString,questionDto,exampleDto);
 		return 1;
 	}
