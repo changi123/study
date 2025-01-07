@@ -56,7 +56,22 @@ public class IndexController {
 		model.addAttribute("exampleDto", exampleDto); 
 		return "word-practice";
 	}
+	// 틀린 횟수 정렬 문제
+	@GetMapping("/wrong-practice")	
+	String wrongPactice(@RequestParam("questionId") int questionId, Model model) {
+		QuestionDto questionDto = questionService.selectByQuestionId(questionId);
+		if( questionDto.getQuestionCnt() == 0) {
+			return "redirect:/";
+		}
+		ExampleDto exampleDto = questionService.exampleDetail(questionDto.getQuestionId());
+		model.addAttribute("questionDto", questionDto); 
+		model.addAttribute("exampleDto", exampleDto); 
+		
+		return "wrong-practice";
+	}
 
+	
+	// 단어 추가 페이지 이동
 	@GetMapping("word-add")
 	public String wordAddPage() {
 		return "word-add"; 

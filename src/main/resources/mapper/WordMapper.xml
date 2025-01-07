@@ -104,7 +104,41 @@
 		parameterType="String">
 		SELECT COUNT(*)
 		FROM question
-		WHERE LOWER(TRIM(questionWord)) = LOWER(#{questionWord})
+		WHERE
+		LOWER(TRIM(questionWord)) = LOWER(#{questionWord})
+	</select>
+
+
+
+	<!-- 틀린 횟수 문제가 있는지 체크 -->
+	<select id="wrongCntCheck" resultType="Integer">
+		SELECT IFNULL(questionId ,
+		0 )
+		FROM question
+		WHERE questionCnt > 0
+		ORDER BY questionCnt desc ,
+		questionId asc
+		LIMIT 1
+	</select>
+	<!-- 틀린 횟수 정렬 문제 -->
+	<select id="wrongPactice"
+		resultType="hello.study.dto.QuestionDto" parameterType="Integer">
+    <![CDATA[
+    SELECT *
+    FROM question
+    WHERE (questionCnt < (
+        SELECT questionCnt
+        FROM question
+        WHERE questionId = #{questionId}
+    )
+    OR (questionCnt = (
+        SELECT questionCnt
+        FROM question
+        WHERE questionId = #{questionId}
+    ) AND questionId > #{questionId}))
+    ORDER BY questionCnt desc
+    LIMIT 1;
+    ]]>
 	</select>
 
 </mapper>

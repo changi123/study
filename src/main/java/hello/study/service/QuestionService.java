@@ -101,6 +101,18 @@ public class QuestionService {
 	}
 
 	
+	// 틀린 횟수 문제가 있는지 체크
+	public int wrongCntCheck() {
+		return wordMapper.wrongCntCheck();
+	}
+
+	
+	//틀린 횟수 정렬 문제
+	public QuestionDto wrongPactice(int questionId) {
+		return wordMapper.wrongPactice(questionId);
+	}
+
+	
 	
 
 

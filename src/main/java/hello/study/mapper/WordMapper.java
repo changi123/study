@@ -36,7 +36,14 @@ public interface WordMapper {
 
 	Integer selectIdDayDesc(@Param("questionId") int questionId, @Param("questionDay") int questionDay);
 
+	// 먼저 이미 있는 데이터인지 확인
 	int cntCheck(String questionWord);
+
+	// 틀린 횟수 문제가 있는지 체크
+	int wrongCntCheck();
+	
+	// 틀린 횟수 정렬 문제
+	QuestionDto wrongPactice(int questionId);
 
 //	void selectQuestion();
 

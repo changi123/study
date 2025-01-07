@@ -69,8 +69,11 @@ h1 {
 		<!-- 단어 추가 버튼 -->
 		<button class="btn" id="wordAddBtn">단어 추가</button>
 
-		<!-- 단어 목록 보기 버튼 -->
+		<!-- 두 단어 이상으로 된 표현 연습 -->
 		<button class="btn" id="sentenceWordsBtn">두 단어 이상으로 된 표현 연습</button>
+		
+		<!-- 틀린 횟수 우선 연습 -->
+		<button class="btn" id="wrongWordsBtn">틀린 횟수 우선 연습</button>
 	</div>
 
 	<!-- 하단에 이미지 추가 -->
@@ -105,7 +108,7 @@ h1 {
             success: function(data) {
    			questionId = data.questionId;
            	 if( data ){
-           		 window.location.href = '/word/practice?questionDay=' + questionDay + '&questionId=' + questionId;
+           		 window.location.href = '/word/test?questionDay=' + questionDay + '&questionId=' + questionId;
            	 } else{
            		 alert("아직 등록된 문제가 없습니다.");
            	 } 
@@ -115,6 +118,30 @@ h1 {
            	 alert("아직 등록된 문제가 없습니다.");
             }
         });
+	});
+	
+	// 틀린 횟수 우선 연습
+	$('#wrongWordsBtn').click(function() {
+		//alert("wrongWordsBtn");
+		// 가장 먼저 나와야할 틀린 횟수가 가장 많은 걸 가지고 가자
+		
+		// 틀린 횟수가 있는 데이터가 있는지 먼저 체크하자
+		 $.ajax({
+           url: '/api/word/test-wrong',
+           type: 'POST',
+           success: function(data) {
+  			var questionId = data;
+          	 if( data ){
+          		window.location.href = '/word/wrong-practice?questionId=' + questionId;
+          	 } else{
+          		 alert("아직 등록된 문제가 없습니다.");
+          	 } 
+	               
+           },
+           error: function(xhr, status, error) {
+          	 alert("아직 등록된 문제가 없습니다.");
+           }
+       });
 	});
 </script>
 </html>

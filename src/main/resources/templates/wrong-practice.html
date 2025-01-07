@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Word Practice</title>
+<title>wrong-practice</title>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <style>
@@ -244,27 +244,24 @@ $(".btn").click(function() {
                 }
             });
         
-        	
             modal.style.display = "none";
             
             // 다음 문제가 있다면 다음 문제로 이동
-            $.ajax({
-                url: '/api/word/next-check',
+             $.ajax({
+                url: '/api/word/wrong-next-check',
                 type: 'POST',
                 data: data,
                 success: function(data) {
                     questionId = data.questionId;
-                    questionDay = questionDay;
-                    if (data.questionId == null) {
-                        window.location.href = '/'; 
-                    } else {
-                        window.location.href = '/word/practice?questionDay=' + questionDay + '&questionId=' + questionId;
-                    }
+                    
+                    window.location.href = '/word/wrong-practice?questionId=' + questionId;
+                    
                 },
                 error: function(xhr, status, error) {
-                    console.error('wordTestBtn Error:', error);
+                    console.error('next-check Error:', error);
                 }
-            });
+            }); 
+        
         }
 
         window.onclick = function(event) {

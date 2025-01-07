@@ -3,6 +3,8 @@ package hello.study.controller;
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -39,6 +41,19 @@ public class RestApiController {
 
 	}
 
+	// 틀린 횟수 문제 존재 여부 체크
+	@PostMapping("/test-wrong")	
+	public int testWrong() {
+		int wrongCnt = questionService.wrongCntCheck();
+		return wrongCnt;
+	}
+	
+	// 다음 틀린 횟수 문제가 있는지 여부 체크
+	@PostMapping("/wrong-next-check")
+	public QuestionDto wrongNextCheck(QuestionDto questionDto) {
+		questionDto = questionService.wrongPactice(questionDto.getQuestionId());
+		return questionDto;
+	}
 	// 오답 횟수 증가 
 	@PostMapping("/wrong-answer")
 	public int wrongAnswer(QuestionDto questionDto) {
