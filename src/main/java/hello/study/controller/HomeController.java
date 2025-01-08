@@ -1,8 +1,8 @@
 package hello.study.controller;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -15,6 +15,16 @@ import lombok.extern.slf4j.Slf4j;
 public class HomeController {
 	@GetMapping("/")
 	public String wordAddPage(HttpSession session) {
+		
+		  // 현재 날짜와 시간
+        LocalDateTime now = LocalDateTime.now();
+
+        // 원하는 포맷 (예: yyyy-MM-dd HH:mm:ss)
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
+        // 포맷 적용
+        String formattedNow = now.format(formatter);
+		
 	       // 세션에서 방문 횟수 가져오기
         Integer visitCount = (Integer) session.getAttribute("visitCount");
 
@@ -30,7 +40,7 @@ public class HomeController {
         session.setAttribute("visitCount", visitCount);
 
         // 로그 남기기
-        log.info("방문횟수: {} | 방문 시간: {}", visitCount, LocalDateTime.now());
+        log.info("사용자가 방문했습니다. | 방문횟수: {} | 방문 시간: {}", visitCount, formattedNow);
 
         return "index"; 
 	}
