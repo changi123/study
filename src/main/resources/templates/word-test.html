@@ -164,6 +164,12 @@ $(".btn").click(function() {
     var questionDay = $("#questionDay").val();
     
     
+    
+    var homeButton = $("#homeButton");
+    
+    // 확인 누르면 탭 눌러서 간편하게 넘어가게 홈버튼 비활성화 
+    homeButton.hide();
+    
     // 예문 
     var exampleDetail = $("#exampleDetail").text();
      
