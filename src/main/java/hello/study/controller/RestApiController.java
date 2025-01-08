@@ -65,7 +65,21 @@ public class RestApiController {
 		if (wordAddString.length() == 0) {
 			return 1; 
 		}
-		questionService.additionalInformation(wordAddString,questionDto,exampleDto);
+		
+		// 실수로 띄어쓰기만 오는 경우가 있다..
+		// 공백 기준으로 쪼개고 만약 글자를 하나라도 만나면 true 주고 INSERT 하자
+		boolean flag = false;
+		String [] arr = wordAddString.split("");
+		String pattern = "[a-zA-Z]";
+		for( String s : arr) {
+			if( s.matches(pattern)) {
+				flag = true;
+				break;
+			}
+		}
+		if( flag ) {			
+			questionService.additionalInformation(wordAddString,questionDto,exampleDto);
+		}
 		return 1;
 	}
 	
