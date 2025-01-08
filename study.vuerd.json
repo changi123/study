@@ -1,0 +1,579 @@
+{
+  "$schema": "https://raw.githubusercontent.com/dineug/erd-editor/main/json-schema/schema.json",
+  "version": "3.0.0",
+  "settings": {
+    "width": 2000,
+    "height": 2000,
+    "scrollTop": -6.4611,
+    "scrollLeft": -757.9866,
+    "zoomLevel": 1,
+    "show": 431,
+    "database": 4,
+    "databaseName": "",
+    "canvasType": "ERD",
+    "language": 1,
+    "tableNameCase": 4,
+    "columnNameCase": 2,
+    "bracketType": 1,
+    "relationshipDataTypeSync": true,
+    "relationshipOptimization": false,
+    "columnOrder": [
+      1,
+      2,
+      4,
+      8,
+      16,
+      32,
+      64
+    ],
+    "maxWidthComment": -1,
+    "ignoreSaveSettings": 0
+  },
+  "doc": {
+    "tableIds": [
+      "gHUdCvaKAYePzAlLPpx__",
+      "f8VNBE5npKa7EaDxY7_Qe",
+      "hrJMD6oqyR1zHtlDFJkj0"
+    ],
+    "relationshipIds": [
+      "spcvRMnYQJGR6yTVkLOW9"
+    ],
+    "indexIds": [],
+    "memoIds": []
+  },
+  "collections": {
+    "tableEntities": {
+      "gHUdCvaKAYePzAlLPpx__": {
+        "id": "gHUdCvaKAYePzAlLPpx__",
+        "name": "",
+        "comment": "",
+        "columnIds": [],
+        "seqColumnIds": [],
+        "ui": {
+          "x": 208,
+          "y": 100,
+          "zIndex": 2,
+          "widthName": 60,
+          "widthComment": 60,
+          "color": ""
+        },
+        "meta": {
+          "updateAt": 1736316783327,
+          "createAt": 1736310552460
+        }
+      },
+      "f8VNBE5npKa7EaDxY7_Qe": {
+        "id": "f8VNBE5npKa7EaDxY7_Qe",
+        "name": "question",
+        "comment": "문제테이블",
+        "columnIds": [
+          "lom74GIwXkCXxlI4tl4Yd",
+          "zPxbra2nyGxlVN3ljaK-Z",
+          "VHvaK6rZ8N5j2h5zWo24J",
+          "v3B4FPOd2GCrJRq-bvvT5",
+          "lF1IUsu2lh1nBSs4odkD3"
+        ],
+        "seqColumnIds": [
+          "lom74GIwXkCXxlI4tl4Yd",
+          "zPxbra2nyGxlVN3ljaK-Z",
+          "VHvaK6rZ8N5j2h5zWo24J",
+          "v3B4FPOd2GCrJRq-bvvT5",
+          "lF1IUsu2lh1nBSs4odkD3"
+        ],
+        "ui": {
+          "x": 638,
+          "y": 381,
+          "zIndex": 3,
+          "widthName": 60,
+          "widthComment": 62,
+          "color": ""
+        },
+        "meta": {
+          "updateAt": 1736317111058,
+          "createAt": 1736317043147
+        }
+      },
+      "ngtBkWrtRaCiJClmknY95": {
+        "id": "ngtBkWrtRaCiJClmknY95",
+        "name": "",
+        "comment": "",
+        "columnIds": [],
+        "seqColumnIds": [],
+        "ui": {
+          "x": 1082,
+          "y": 449,
+          "zIndex": 4,
+          "widthName": 60,
+          "widthComment": 60,
+          "color": ""
+        },
+        "meta": {
+          "updateAt": 1736317047297,
+          "createAt": 1736317044070
+        }
+      },
+      "hrJMD6oqyR1zHtlDFJkj0": {
+        "id": "hrJMD6oqyR1zHtlDFJkj0",
+        "name": "example",
+        "comment": "예문테이블",
+        "columnIds": [
+          "ME0gsV0zQPulQvHWlTnro",
+          "JOiX2u6y02SMnL7yFTiKr",
+          "BUyrOTL2RJXoeNbv1wDD6",
+          "tGOA4EHJYq9LpkVjb6LxV",
+          "wm0Qo-5Mg3T9sBNWpeiFE"
+        ],
+        "seqColumnIds": [
+          "ME0gsV0zQPulQvHWlTnro",
+          "JOiX2u6y02SMnL7yFTiKr",
+          "GFP_-1N3GG4kOlZm4338S",
+          "BUyrOTL2RJXoeNbv1wDD6",
+          "tGOA4EHJYq9LpkVjb6LxV",
+          "wm0Qo-5Mg3T9sBNWpeiFE",
+          "ztnQ1MOzkUaj17ySgkwSa"
+        ],
+        "ui": {
+          "x": 1144.8421,
+          "y": 380.3684,
+          "zIndex": 5,
+          "widthName": 60,
+          "widthComment": 62,
+          "color": ""
+        },
+        "meta": {
+          "updateAt": 1736317265149,
+          "createAt": 1736317045405
+        }
+      }
+    },
+    "tableColumnEntities": {
+      "lom74GIwXkCXxlI4tl4Yd": {
+        "id": "lom74GIwXkCXxlI4tl4Yd",
+        "tableId": "f8VNBE5npKa7EaDxY7_Qe",
+        "name": "questionId",
+        "comment": "",
+        "dataType": "INT",
+        "default": "",
+        "options": 10,
+        "ui": {
+          "keys": 1,
+          "widthName": 60,
+          "widthComment": 60,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1736317217956,
+          "createAt": 1736317068963
+        }
+      },
+      "zPxbra2nyGxlVN3ljaK-Z": {
+        "id": "zPxbra2nyGxlVN3ljaK-Z",
+        "tableId": "f8VNBE5npKa7EaDxY7_Qe",
+        "name": "questionWord",
+        "comment": "",
+        "dataType": "VARCHAR",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 77,
+          "widthComment": 60,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1736317137647,
+          "createAt": 1736317069071
+        }
+      },
+      "VHvaK6rZ8N5j2h5zWo24J": {
+        "id": "VHvaK6rZ8N5j2h5zWo24J",
+        "tableId": "f8VNBE5npKa7EaDxY7_Qe",
+        "name": "questionAns",
+        "comment": "",
+        "dataType": "VARCHAR",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 68,
+          "widthComment": 60,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1736317139322,
+          "createAt": 1736317069281
+        }
+      },
+      "v3B4FPOd2GCrJRq-bvvT5": {
+        "id": "v3B4FPOd2GCrJRq-bvvT5",
+        "tableId": "f8VNBE5npKa7EaDxY7_Qe",
+        "name": "questionCnt",
+        "comment": "",
+        "dataType": "INT",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 66,
+          "widthComment": 60,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1736317121050,
+          "createAt": 1736317069398
+        }
+      },
+      "lF1IUsu2lh1nBSs4odkD3": {
+        "id": "lF1IUsu2lh1nBSs4odkD3",
+        "tableId": "f8VNBE5npKa7EaDxY7_Qe",
+        "name": "questionDay",
+        "comment": "",
+        "dataType": "INT",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 68,
+          "widthComment": 60,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1736317122853,
+          "createAt": 1736317111058
+        }
+      },
+      "ME0gsV0zQPulQvHWlTnro": {
+        "id": "ME0gsV0zQPulQvHWlTnro",
+        "tableId": "hrJMD6oqyR1zHtlDFJkj0",
+        "name": "exampleId",
+        "comment": "예문아이디",
+        "dataType": "INT",
+        "default": "",
+        "options": 10,
+        "ui": {
+          "keys": 1,
+          "widthName": 60,
+          "widthComment": 62,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1736317216668,
+          "createAt": 1736317164084
+        }
+      },
+      "GFP_-1N3GG4kOlZm4338S": {
+        "id": "GFP_-1N3GG4kOlZm4338S",
+        "tableId": "hrJMD6oqyR1zHtlDFJkj0",
+        "name": "questionId",
+        "comment": "문제아이디",
+        "dataType": "INT",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 60,
+          "widthComment": 62,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1736317207029,
+          "createAt": 1736317164196
+        }
+      },
+      "BUyrOTL2RJXoeNbv1wDD6": {
+        "id": "BUyrOTL2RJXoeNbv1wDD6",
+        "tableId": "hrJMD6oqyR1zHtlDFJkj0",
+        "name": "exampleDetail",
+        "comment": "예문내용",
+        "dataType": "TEXT",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 77,
+          "widthComment": 60,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1736317208936,
+          "createAt": 1736317164350
+        }
+      },
+      "tGOA4EHJYq9LpkVjb6LxV": {
+        "id": "tGOA4EHJYq9LpkVjb6LxV",
+        "tableId": "hrJMD6oqyR1zHtlDFJkj0",
+        "name": "exampleAns",
+        "comment": "예문해석",
+        "dataType": "TEXT",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 66,
+          "widthComment": 60,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1736317211945,
+          "createAt": 1736317164491
+        }
+      },
+      "wm0Qo-5Mg3T9sBNWpeiFE": {
+        "id": "wm0Qo-5Mg3T9sBNWpeiFE",
+        "tableId": "hrJMD6oqyR1zHtlDFJkj0",
+        "name": "exampleGrammar",
+        "comment": "예문문법",
+        "dataType": "TEXT",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 96,
+          "widthComment": 60,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1736317214044,
+          "createAt": 1736317173376
+        }
+      },
+      "ztnQ1MOzkUaj17ySgkwSa": {
+        "id": "ztnQ1MOzkUaj17ySgkwSa",
+        "tableId": "hrJMD6oqyR1zHtlDFJkj0",
+        "name": "",
+        "comment": "",
+        "dataType": "",
+        "default": "",
+        "options": 0,
+        "ui": {
+          "keys": 0,
+          "widthName": 60,
+          "widthComment": 60,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1736317173519,
+          "createAt": 1736317173519
+        }
+      },
+      "JOiX2u6y02SMnL7yFTiKr": {
+        "id": "JOiX2u6y02SMnL7yFTiKr",
+        "tableId": "hrJMD6oqyR1zHtlDFJkj0",
+        "name": "questionId",
+        "comment": "문제아이디",
+        "dataType": "INT",
+        "default": "",
+        "options": 8,
+        "ui": {
+          "keys": 2,
+          "widthName": 60,
+          "widthComment": 62,
+          "widthDataType": 60,
+          "widthDefault": 60
+        },
+        "meta": {
+          "updateAt": 1736317261335,
+          "createAt": 1736317233680
+        }
+      }
+    },
+    "relationshipEntities": {
+      "spcvRMnYQJGR6yTVkLOW9": {
+        "id": "spcvRMnYQJGR6yTVkLOW9",
+        "identification": false,
+        "relationshipType": 16,
+        "startRelationshipType": 2,
+        "start": {
+          "tableId": "f8VNBE5npKa7EaDxY7_Qe",
+          "columnIds": [
+            "lom74GIwXkCXxlI4tl4Yd"
+          ],
+          "x": 1020,
+          "y": 469,
+          "direction": 2
+        },
+        "end": {
+          "tableId": "hrJMD6oqyR1zHtlDFJkj0",
+          "columnIds": [
+            "JOiX2u6y02SMnL7yFTiKr"
+          ],
+          "x": 1144.8421,
+          "y": 468.3684,
+          "direction": 1
+        },
+        "meta": {
+          "updateAt": 1736317233682,
+          "createAt": 1736317233682
+        }
+      }
+    },
+    "indexEntities": {},
+    "indexColumnEntities": {},
+    "memoEntities": {}
+  },
+  "lww": {
+    "gHUdCvaKAYePzAlLPpx__": [
+      "tableEntities",
+      1736310552457,
+      -1,
+      {}
+    ],
+    "f8VNBE5npKa7EaDxY7_Qe": [
+      "tableEntities",
+      1736317043146,
+      -1,
+      {
+        "name": 1736317060921,
+        "comment": 1736317067502
+      }
+    ],
+    "ngtBkWrtRaCiJClmknY95": [
+      "tableEntities",
+      1736317044070,
+      1736317049310,
+      {}
+    ],
+    "hrJMD6oqyR1zHtlDFJkj0": [
+      "tableEntities",
+      1736317045404,
+      -1,
+      {
+        "name": 1736317160704,
+        "comment": 1736317163590
+      }
+    ],
+    "lom74GIwXkCXxlI4tl4Yd": [
+      "tableColumnEntities",
+      1736317068962,
+      -1,
+      {
+        "name": 1736317102282,
+        "dataType": 1736317118464,
+        "default": 1736317153183,
+        "options(primaryKey)": 1736317217956
+      }
+    ],
+    "zPxbra2nyGxlVN3ljaK-Z": [
+      "tableColumnEntities",
+      1736317069069,
+      -1,
+      {
+        "name": 1736317104978,
+        "dataType": 1736317137646
+      }
+    ],
+    "VHvaK6rZ8N5j2h5zWo24J": [
+      "tableColumnEntities",
+      1736317069279,
+      -1,
+      {
+        "name": 1736317107914,
+        "dataType": 1736317139321
+      }
+    ],
+    "v3B4FPOd2GCrJRq-bvvT5": [
+      "tableColumnEntities",
+      1736317069397,
+      -1,
+      {
+        "name": 1736317110407,
+        "dataType": 1736317121050
+      }
+    ],
+    "lF1IUsu2lh1nBSs4odkD3": [
+      "tableColumnEntities",
+      1736317111055,
+      -1,
+      {
+        "name": 1736317113032,
+        "dataType": 1736317122852
+      }
+    ],
+    "ME0gsV0zQPulQvHWlTnro": [
+      "tableColumnEntities",
+      1736317164083,
+      -1,
+      {
+        "name": 1736317167999,
+        "dataType": 1736317193085,
+        "comment": 1736317203889,
+        "options(primaryKey)": 1736317216665
+      }
+    ],
+    "GFP_-1N3GG4kOlZm4338S": [
+      "tableColumnEntities",
+      1736317164195,
+      1736317255560,
+      {
+        "name": 1736317170168,
+        "dataType": 1736317195973,
+        "comment": 1736317207028
+      }
+    ],
+    "BUyrOTL2RJXoeNbv1wDD6": [
+      "tableColumnEntities",
+      1736317164350,
+      -1,
+      {
+        "name": 1736317172759,
+        "dataType": 1736317197668,
+        "comment": 1736317208935
+      }
+    ],
+    "tGOA4EHJYq9LpkVjb6LxV": [
+      "tableColumnEntities",
+      1736317164490,
+      -1,
+      {
+        "name": 1736317175743,
+        "dataType": 1736317198833,
+        "comment": 1736317211944
+      }
+    ],
+    "wm0Qo-5Mg3T9sBNWpeiFE": [
+      "tableColumnEntities",
+      1736317173375,
+      -1,
+      {
+        "name": 1736317178999,
+        "dataType": 1736317200315,
+        "comment": 1736317214044
+      }
+    ],
+    "ztnQ1MOzkUaj17ySgkwSa": [
+      "tableColumnEntities",
+      1736317173518,
+      1736317184273,
+      {}
+    ],
+    "JOiX2u6y02SMnL7yFTiKr": [
+      "tableColumnEntities",
+      1736317233674,
+      -1,
+      {
+        "options(notNull)": 1736317233674,
+        "name": 1736317233674,
+        "dataType": 1736317233674,
+        "default": 1736317233674,
+        "comment": 1736317261334
+      }
+    ],
+    "spcvRMnYQJGR6yTVkLOW9": [
+      "relationshipEntities",
+      1736317233674,
+      -1,
+      {}
+    ]
+  }
+}
