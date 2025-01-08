@@ -47,7 +47,7 @@ input[type="text"] {
 	border-radius: 5px;
 }
 
-.btn {
+.btn , .homeButton {
 	padding: 10px 20px;
 	font-size: 16px;
 	color: white;
@@ -138,7 +138,7 @@ input[type="text"] {
 		</div>
 
 		<button class="btn">확인</button>
-		<button class="btn" id="homeButton" onclick="window.location.href=`/`">홈으로</button>
+		<button class="homeButton" id="homeButton" onclick="window.location.href=`/`">홈으로</button>
 		<input type="hidden" id="realAns"
 			th:value="${questionDto.questionAns}"> 
 			<input type="hidden"
@@ -168,6 +168,11 @@ $(".btn").click(function() {
     var questionAns = $("#answer").val();
     var realAns = $("#realAns").val();
     
+    
+    // 홈버튼
+    var homeButton = $("#homeButton");
+    
+    homeButton.hide(); 
     // 내가 입력한 예문 해석
     var example = $("#example").val(); 
     

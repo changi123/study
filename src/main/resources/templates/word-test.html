@@ -46,7 +46,7 @@ input[type="text"] {
 	border-radius: 5px;
 }
 
-.btn {
+.btn , .homeButton{
 	padding: 10px 20px;
 	font-size: 16px;
 	color: white;
@@ -131,7 +131,7 @@ input[type="text"] {
 		</div>
 
 		<button class="btn">확인</button>
-		<button class="btn" id="homeButton" onclick="window.location.href=`/`">홈으로</button>
+		<button class="homeButton" id="homeButton" onclick="window.location.href=`/`">홈으로</button>
 		<!-- 실제 정답 -->
 		<input type="hidden" id="realAns"
 			th:value="${questionDto.questionAns}"> 
@@ -165,7 +165,7 @@ $(".btn").click(function() {
     
     
     
-    var homeButton = $("#homeButton");
+    var homeButton = $(".homeButton");
     
     // 확인 누르면 탭 눌러서 간편하게 넘어가게 홈버튼 비활성화 
     homeButton.hide();
