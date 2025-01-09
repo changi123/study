@@ -45,7 +45,9 @@ public interface WordMapper {
 	// 틀린 횟수 정렬 문제
 	QuestionDto wrongPactice(int questionId);
 
-//	void selectQuestion();
+	// 최대 Day 조회
+	int selectMaxDay();
+
 
 
 }

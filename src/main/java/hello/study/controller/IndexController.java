@@ -28,11 +28,13 @@ public class IndexController {
 
 	// 단어 테스트 Day 선택 화면 이동
 	@GetMapping("/test-choice-day")
-	String testChoiceDay() {
+	String testChoiceDay(@RequestParam("maxDay") String questionDay , Model model) {
+		model.addAttribute("questionDay",questionDay);
 		return "test-choice-day";
 	}
 	@GetMapping("/practice-choice-day")
-	String testPractice() {
+	String testPractice(@RequestParam("maxDay") String questionDay , Model model) {
+		model.addAttribute("questionDay",questionDay);
 		return "practice-choice-day";
 	}
 

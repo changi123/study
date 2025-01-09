@@ -140,5 +140,12 @@
     LIMIT 1;
     ]]>
 	</select>
+	<!-- 최대 Day 조회 -->
+	<select id="selectMaxDay">
+   	SELECT questionDay
+   	FROM question
+   	ORDER BY questionDay desc 
+   	LIMIT 1
+	</select>
 
 </mapper>

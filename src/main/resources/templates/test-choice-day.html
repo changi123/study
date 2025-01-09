@@ -82,7 +82,8 @@ button:hover {
 </script>
 <body>
 	<div class="container">
-		<h1>테스트할 Day를 입력하세요 ( 현재 1~3Day까지 )</h1>
+		<h1>테스트할 Day를 입력하세요</h1>
+		<h2 th:text="'현재 1 ~ ' + ${questionDay}+' Day 선택 가능'"></h2>
 		<label for="testDay">테스트할 Day입력</label> <input type="text"
 			id="questionDay" name="questionDay" placeholder="1" required>
 			

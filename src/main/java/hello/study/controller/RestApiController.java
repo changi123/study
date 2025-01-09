@@ -23,6 +23,11 @@ public class RestApiController {
 	private  QuestionService questionService;
 
 
+	// 최대Day 조회
+	@PostMapping("/maxDay")
+	public int maxDay() {
+		return questionService.selectMaxDay();
+	}
 	// 다음 문제가 있는지 여부 체크
 	@PostMapping("/next-check")
 	public QuestionDto wordTest(QuestionDto questionDto) {

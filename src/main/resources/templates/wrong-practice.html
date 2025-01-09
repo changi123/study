@@ -181,7 +181,7 @@ input[type="text"] {
 	function speakWord() {
 		word = $("#questionWord").text();
 		const utterance = new SpeechSynthesisUtterance(word);
-		utterance.rate = 1; // 발음 속도 (0.1에서 10까지 조정)
+		utterance.rate = 0.9; // 발음 속도 (0.1에서 10까지 조정)
 		utterance.pitch = 1; // 발음의 높낮이
 		utterance.volume = 1; // 발음의 볼륨 (0에서 1까지)
 
@@ -192,7 +192,7 @@ input[type="text"] {
 	function speakExample() {
 		word = $("#exampleDetail").text();
 		const utterance = new SpeechSynthesisUtterance(word);
-		utterance.rate = 1; // 발음 속도 (0.1에서 10까지 조정)
+		utterance.rate = 0.9; // 발음 속도 (0.1에서 10까지 조정)
 		utterance.pitch = 1; // 발음의 높낮이
 		utterance.volume = 1; // 발음의 볼륨 (0에서 1까지)
 

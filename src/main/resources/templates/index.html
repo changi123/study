@@ -71,7 +71,7 @@ h1 {
 
 		<!-- 두 단어 이상으로 된 표현 연습 -->
 		<button class="btn" id="sentenceWordsBtn">두 단어 이상으로 된 표현 연습</button>
-		
+
 		<!-- 틀린 횟수 우선 연습 -->
 		<button class="btn" id="wrongWordsBtn">틀린 횟수 우선 연습</button>
 	</div>
@@ -82,12 +82,32 @@ h1 {
 <script type="text/javascript">
 	// 단어 테스트 페이지
 	$('#wordTestBtn').click(function() {
-		window.location.href = '/word/test-choice-day';
+		$.ajax({
+			url : '/api/word/maxDay',
+			type : 'POST',
+			success : function(data) {
+				window.location.href = '/word/test-choice-day?maxDay='+data;
+			},
+			error : function(xhr, status, error) {
+				console.error('/api/word/maxDay', error);
+			}
+		});
 	});
-	
+
 	// 단어 연습 페이지
 	$('#wordPracticeBtn').click(function() {
-		window.location.href = '/word/practice-choice-day';
+		$.ajax({
+			url : '/api/word/maxDay',
+			type : 'POST',
+			success : function(data) {
+				window.location.href = '/word/practice-choice-day?maxDay='+data;
+			},
+			error : function(xhr, status, error) {
+				console.error('/api/word/maxDay', error);
+			}
+		});
+		
+	
 	});
 
 	// 단어 추가 페이지
@@ -95,53 +115,63 @@ h1 {
 		window.location.href = '/word/word-add';
 	});
 
-	$('#sentenceWordsBtn').click(function() {
-		var questionDay = 0;
-		var data  = {
-				questionDay : questionDay
-		}
-		// 해당하는 날짜 문제가 있는지 체크
-		 $.ajax({
-            url: '/api/word/day-check',
-            type: 'POST',
-            data: data,
-            success: function(data) {
-   			questionId = data.questionId;
-           	 if( data ){
-           		 window.location.href = '/word/test?questionDay=' + questionDay + '&questionId=' + questionId;
-           	 } else{
-           		 alert("아직 등록된 문제가 없습니다.");
-           	 } 
-	               
-            },
-            error: function(xhr, status, error) {
-           	 alert("아직 등록된 문제가 없습니다.");
-            }
-        });
-	});
-	
+	$('#sentenceWordsBtn')
+			.click(
+					function() {
+						var questionDay = 0;
+						var data = {
+							questionDay : questionDay
+						}
+						// 해당하는 날짜 문제가 있는지 체크
+						$
+								.ajax({
+									url : '/api/word/day-check',
+									type : 'POST',
+									data : data,
+									success : function(data) {
+										questionId = data.questionId;
+										if (data) {
+											window.location.href = '/word/test?questionDay='
+													+ questionDay
+													+ '&questionId='
+													+ questionId;
+										} else {
+											alert("아직 등록된 문제가 없습니다.");
+										}
+
+									},
+									error : function(xhr, status, error) {
+										alert("아직 등록된 문제가 없습니다.");
+									}
+								});
+					});
+
 	// 틀린 횟수 우선 연습
-	$('#wrongWordsBtn').click(function() {
-		//alert("wrongWordsBtn");
-		// 가장 먼저 나와야할 틀린 횟수가 가장 많은 걸 가지고 가자
-		
-		// 틀린 횟수가 있는 데이터가 있는지 먼저 체크하자
-		 $.ajax({
-           url: '/api/word/test-wrong',
-           type: 'POST',
-           success: function(data) {
-  			var questionId = data;
-          	 if( data ){
-          		window.location.href = '/word/wrong-practice?questionId=' + questionId;
-          	 } else{
-          		 alert("아직 등록된 문제가 없습니다.");
-          	 } 
-	               
-           },
-           error: function(xhr, status, error) {
-          	 alert("아직 등록된 문제가 없습니다.");
-           }
-       });
-	});
+	$('#wrongWordsBtn')
+			.click(
+					function() {
+						//alert("wrongWordsBtn");
+						// 가장 먼저 나와야할 틀린 횟수가 가장 많은 걸 가지고 가자
+
+						// 틀린 횟수가 있는 데이터가 있는지 먼저 체크하자
+						$
+								.ajax({
+									url : '/api/word/test-wrong',
+									type : 'POST',
+									success : function(data) {
+										var questionId = data;
+										if (data) {
+											window.location.href = '/word/wrong-practice?questionId='
+													+ questionId;
+										} else {
+											alert("아직 등록된 문제가 없습니다.");
+										}
+
+									},
+									error : function(xhr, status, error) {
+										alert("아직 등록된 문제가 없습니다.");
+									}
+								});
+					});
 </script>
 </html>

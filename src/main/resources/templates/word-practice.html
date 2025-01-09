@@ -197,7 +197,7 @@ input[type="text"] {
 	function speakWord() {
 		word = $("#questionWord").text();
 		const utterance = new SpeechSynthesisUtterance(word);
-		utterance.rate = 1; // 발음 속도 (0.1에서 10까지 조정)
+		utterance.rate = 0.9; // 발음 속도 (0.1에서 10까지 조정)
 		utterance.pitch = 1; // 발음의 높낮이
 		utterance.volume = 1; // 발음의 볼륨 (0에서 1까지)
 
@@ -208,7 +208,7 @@ input[type="text"] {
 	function speakExample() {
 		word = $("#exampleDetail").text();
 		const utterance = new SpeechSynthesisUtterance(word);
-		utterance.rate = 1; // 발음 속도 (0.1에서 10까지 조정)
+		utterance.rate = 0.9; // 발음 속도 (0.1에서 10까지 조정)
 		utterance.pitch = 1; // 발음의 높낮이
 		utterance.volume = 1; // 발음의 볼륨 (0에서 1까지)
 
@@ -216,136 +216,134 @@ input[type="text"] {
 		utterance.lang = 'en-US'; // 영어 미국식 발음
 		speechSynthesis.speak(utterance);
 	}
-	$(".btn")
-			.click(
-					function() {
-						var questionId = $("#questionId").val();
-						var questionAns = $("#answer").val();
-						var realAns = $("#realAns").val();
+	$(".btn").click(function() {
+	var questionId = $("#questionId").val();
+	var questionAns = $("#answer").val();
+	var realAns = $("#realAns").val();
 
-						// 홈버튼
-						var homeButton = $("#homeButton");
+	// 홈버튼
+	var homeButton = $("#homeButton");
 
-						homeButton.hide();
-						// 내가 입력한 예문 해석
-						var example = $("#example").val();
+	homeButton.hide();
+	// 내가 입력한 예문 해석
+	var example = $("#example").val();
 
-						var questionDay = $("#questionDay").val();
-						// 예문 
-						var exampleDetail = $("#exampleDetail").text();
+	var questionDay = $("#questionDay").val();
+	// 예문 
+	var exampleDetail = $("#exampleDetail").text();
 
-						// 예문 해석
-						var exampleAns = $("#exampleAns").val();
+	// 예문 해석
+	var exampleAns = $("#exampleAns").val();
 
-						// 예문 문법
-						var exampleGrammar = $("#exampleGrammar").val();
+	// 예문 문법
+	var exampleGrammar = $("#exampleGrammar").val();
 
-						var realAnsArray = realAns.split(",");
+	var realAnsArray = realAns.split(",");
 
-						// 정답 공백제거
-						for (var i = 0; i < realAnsArray.length; i++) {
-							realAnsArray[i] = realAnsArray[i].replaceAll(" ",
-									"");
-						}
+	// 정답 공백제거
+	for (var i = 0; i < realAnsArray.length; i++) {
+		realAnsArray[i] = realAnsArray[i].replaceAll(" ",
+				"");
+	}
 
-						// 문법 쉼표를 기준으로 정리
-						var grammarItems = exampleGrammar.split(",");
-						var grammarFormatted = grammarItems.join("<br>");
+	// 문법 쉼표를 기준으로 정리
+	var grammarItems = exampleGrammar.split(",");
+	var grammarFormatted = grammarItems.join("<br>");
 
-						var data = {
-							questionId : questionId,
-							questionAns : questionAns,
-							questionDay : questionDay
-						};
+	var data = {
+		questionId : questionId,
+		questionAns : questionAns,
+		questionDay : questionDay
+	};
 
-						// 입력한 정답 공백 제거 
-						questionAns = questionAns.replaceAll(" ", "");
-						if (realAnsArray.includes(questionAns.trim())) {
-							showModal("정답입니다! <br>" + "<br> 1. 단어 해석 <br>"
-									+ "[" + realAns + "] <br>"
-									+ "<br> 2. 예문 <br>" + "[" + exampleDetail
-									+ "] <br>" + "<br> 3. 예문에 들어간 문법 <br> "
-									+ grammarFormatted + " <br>"
-									+ "<br> 4. 내가 해석한 예문 <br> " + example
-									+ " <br>" + "<br> 5. 예문 해석 <br>" + "["
-									+ exampleAns + "] <br>");
-						} else {
+	// 입력한 정답 공백 제거 
+	questionAns = questionAns.replaceAll(" ", "");
+	if (realAnsArray.includes(questionAns.trim())) {
+		showModal("정답입니다! <br>" + "<br> 1. 단어 해석 <br>"
+				+ "[" + realAns + "] <br>"
+				+ "<br> 2. 예문 <br>" + "[" + exampleDetail
+				+ "] <br>" + "<br> 3. 예문에 들어간 문법 <br> "
+				+ grammarFormatted + " <br>"
+				+ "<br> 4. 내가 해석한 예문 <br> " + example
+				+ " <br>" + "<br> 5. 예문 해석 <br>" + "["
+				+ exampleAns + "] <br>");
+	} else {
 
-							showModal("오답입니다! <br>" + "<br> 1. 단어 해석 <br>"
-									+ "[" + realAns + "] <br>"
-									+ "<br> 2. 예문 <br>" + "[" + exampleDetail
-									+ "] <br>" + "<br> 3. 예문에 들어간 문법 <br> "
-									+ grammarFormatted + " <br>"
-									+ "<br> 4. 내가 해석한 예문 <br> " + example
-									+ " <br>" + "<br> 5. 예문 해석 <br>" + "["
-									+ exampleAns + "] <br>");
-						}
+		showModal("오답입니다! <br>" + "<br> 1. 단어 해석 <br>"
+				+ "[" + realAns + "] <br>"
+				+ "<br> 2. 예문 <br>" + "[" + exampleDetail
+				+ "] <br>" + "<br> 3. 예문에 들어간 문법 <br> "
+				+ grammarFormatted + " <br>"
+				+ "<br> 4. 내가 해석한 예문 <br> " + example
+				+ " <br>" + "<br> 5. 예문 해석 <br>" + "["
+				+ exampleAns + "] <br>");
+	}
 
-						function showModal(message) {
-							var modal = document.getElementById("alertModal");
-							var messageElement = document
-									.getElementById("alertMessage");
-							messageElement.innerHTML = message;
-							modal.style.display = "block";
-							document.getElementById("okButton").onclick = function() {
+	function showModal(message) {
+		var modal = document.getElementById("alertModal");
+		var messageElement = document
+				.getElementById("alertMessage");
+		messageElement.innerHTML = message;
+		modal.style.display = "block";
+		document.getElementById("okButton").onclick = function() {
 
-								// 추가 사항 저장	
-								var wordAddString = $("#wordAdd").val();
-								var wordData = {
-									wordAddString : wordAddString,
-									questionId : questionId,
-									exampleDetail : exampleDetail,
-									exampleAns : exampleAns
-								}
-								$.ajax({
-									url : '/api/word/additional-information',
-									type : 'POST',
-									data : wordData,
-									success : function(data) {
+			// 추가 사항 저장	
+			var wordAddString = $("#wordAdd").val();
+			var wordData = {
+				wordAddString : wordAddString,
+				questionId : questionId,
+				exampleDetail : exampleDetail,
+				exampleAns : exampleAns
+			}
+			$.ajax({
+				url : '/api/word/additional-information',
+				type : 'POST',
+				data : wordData,
+				success : function(data) {
 
-									},
-									error : function(xhr, status, error) {
-										console.error(
-												'additional-information:',
-												error);
-									}
-								});
+				},
+				error : function(xhr, status, error) {
+					console.error(
+							'additional-information:',
+							error);
+				}
+			});
 
-								modal.style.display = "none";
+			modal.style.display = "none";
 
-								// 다음 문제가 있다면 다음 문제로 이동
-								$
-										.ajax({
-											url : '/api/word/next-check',
-											type : 'POST',
-											data : data,
-											success : function(data) {
-												questionId = data.questionId;
-												questionDay = questionDay;
-												if (data.questionId == null) {
-													window.location.href = '/';
-												} else {
-													window.location.href = '/word/practice?questionDay='
-															+ questionDay
-															+ '&questionId='
-															+ questionId;
-												}
-											},
-											error : function(xhr, status, error) {
-												console.error(
-														'wordTestBtn Error:',
-														error);
-											}
-										});
+			// 다음 문제가 있다면 다음 문제로 이동
+			$
+					.ajax({
+						url : '/api/word/next-check',
+						type : 'POST',
+						data : data,
+						success : function(data) {
+							questionId = data.questionId;
+							questionDay = questionDay;
+							if (data.questionId == null) {
+								window.location.href = '/';
+							} else {
+								window.location.href = '/word/practice?questionDay='
+										+ questionDay
+										+ '&questionId='
+										+ questionId;
 							}
-
-							window.onclick = function(event) {
-								if (event.target == modal) {
-									modal.style.display = "none";
-								}
-							}
+						},
+						error : function(xhr, status, error) {
+							console.error(
+									'wordTestBtn Error:',
+									error);
 						}
-
 					});
+		}
+
+		window.onclick = function(event) {
+			if (event.target == modal) {
+				modal.style.display = "none";
+			}
+		}
+	}
+
+});
 </script>
 </html>

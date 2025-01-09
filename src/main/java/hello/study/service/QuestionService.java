@@ -113,6 +113,12 @@ public class QuestionService {
 	}
 
 	
+	// 최대 Day 조회
+	public int selectMaxDay() {
+		return wordMapper.selectMaxDay();
+	}
+
+	
 	
 
 
