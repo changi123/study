@@ -1,7 +1,7 @@
 # 목표
 ## (1) 간단한 프로젝트를 만들어서 Springboot + Mybatis 감을 잃지 말자 😀
 ## (2) 영어가 부족하다.. -> 개발 공부할 때 너무 재밌었으니 분명 영어 공부도 흥미를 갖게 하는 방법이 있을거다 -> 영어 프로그램을 만들면서 개발과 영어를 다 잡자 😃
-## <a href="https://4497-218-155-63-42.ngrok-free.app"> ngrok를 활용해 임시 배포 클릭 ✈</a>
+## <a href="https://well-deadly-pika.ngrok-free.app/"> ngrok를 활용해 임시 배포 클릭 ✈</a>
 
 ---
 
