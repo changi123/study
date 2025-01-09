@@ -19,13 +19,11 @@ public class HomeController {
 		  // 현재 날짜와 시간
         LocalDateTime now = LocalDateTime.now();
 
-        // 원하는 포맷 (예: yyyy-MM-dd HH:mm:ss)
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
-        // 포맷 적용
         String formattedNow = now.format(formatter);
 		
-	       // 세션에서 방문 횟수 가져오기
+	    // 세션에서 방문 횟수 가져오기
         Integer visitCount = (Integer) session.getAttribute("visitCount");
 
         // 방문 횟수가 없으면 0으로 초기화
