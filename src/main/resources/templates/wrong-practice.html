@@ -1,4 +1,5 @@
-	<!DOCTYPE html>
+
+<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
@@ -7,7 +8,6 @@
 
 <style>
 /* 기존 스타일 유지 */
-
 body {
 	font-family: Arial, sans-serif;
 	text-align: center;
@@ -22,6 +22,17 @@ body {
 	border-radius: 10px;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 	position: relative; /* 추가: container 내부에서 절대 위치를 잡을 수 있게 함 */
+}
+/* 발음 버튼 스타일 */
+#speakBtn {
+	padding: 12px 25px;
+	font-size: 18px;
+	color: white;
+	background-color: #007bff; /* 녹색 배경 */
+	border: none;
+	border-radius: 8px;
+	cursor: pointer;
+	transition: background-color 0.3s ease; /* 부드러운 배경 색상 전환 효과 */
 }
 
 #homeButton {
@@ -66,7 +77,6 @@ input[type="text"] {
 	font-size: 16px;
 	color: #555;
 }
-
 
 /* 모달 */
 .modal {
@@ -123,16 +133,22 @@ input[type="text"] {
 
 		<div class="question">
 			문제: <span th:text="${questionDto.questionWord}" id="questionWord"></span>
+			<p>
+				<button onclick="speakWord()" id="speakBtn">단어 발음 듣기</button>
+			</p>
 		</div>
 
 		<div class="question">
 			예문: <span th:text="${exampleDto.exampleDetail}" id="exampleDetail"></span>
+			<p>
+				<button onclick="speakExample()" id="speakBtn">예문 발음 듣기</button>
+			</p>
 		</div>
 
 		<div class="input-container">
 			<input type="text" id="answer" placeholder="정답을 입력하세요">
 		</div>
-		
+
 		<div class="input-container">
 			<input type="text" id="example" placeholder="예문 해석을 입력하세요">
 		</div>
@@ -140,14 +156,11 @@ input[type="text"] {
 		<button class="btn">확인</button>
 		<button class="btn" id="homeButton" onclick="window.location.href=`/`">홈으로</button>
 		<input type="hidden" id="realAns"
-			th:value="${questionDto.questionAns}"> 
-			<input type="hidden"
-			id="exampleAns" th:value="${exampleDto.exampleAns}"> 
-			<input
+			th:value="${questionDto.questionAns}"> <input type="hidden"
+			id="exampleAns" th:value="${exampleDto.exampleAns}"> <input
 			type="hidden" id="exampleGrammar"
-			th:value="${exampleDto.exampleGrammar}">
-		<input type="hidden" id="questionDay"
-			th:value="${questionDto.questionDay}">
+			th:value="${exampleDto.exampleGrammar}"> <input type="hidden"
+			id="questionDay" th:value="${questionDto.questionDay}">
 		<div class="info">
 			틀린 횟수: <span th:text="${questionDto.questionCnt}" id="questionCnt"></span>
 		</div>
@@ -157,121 +170,158 @@ input[type="text"] {
 	<div id="alertModal" class="modal">
 		<div class="modal-content">
 			<p id="alertMessage"></p>
-			<textarea id ="wordAdd" placeholder="Day0 에 추가할 사항을 적어주세요 ex)a strict policy : 엄격한 정책, regarding vacation days: 휴가 일수에 관한" style="width: 100%; height: 100%"></textarea>
+			<textarea id="wordAdd"
+				placeholder="Day0 에 추가할 사항을 적어주세요 ex)a strict policy : 엄격한 정책, regarding vacation days: 휴가 일수에 관한"
+				style="width: 100%; height: 100%"></textarea>
 			<button id="okButton">확인</button>
 		</div>
 	</div>
 </body>
 <script type="text/javascript">
-$(".btn").click(function() {
-    var questionId = $("#questionId").text();
-    var questionAns = $("#answer").val();
-    var realAns = $("#realAns").val();
-    
-    // 내가 입력한 예문 해석
-    var example = $("#example").val(); 
-    
-    var questionDay = $("#questionDay").val();
-    // 예문 
-    var exampleDetail = $("#exampleDetail").text();
-     
-    // 예문 해석
-    var exampleAns = $("#exampleAns").val();
-    
-    // 예문 문법
-    var exampleGrammar = $("#exampleGrammar").val();
-   	
-    var realAnsArray = realAns.split(","); 
-    
-    // 정답 공백제거
-    for( var i = 0  ;  i < realAnsArray.length ; i++){
-    	realAnsArray[i] = realAnsArray[i].replaceAll(" ","");
-    }
-    
-    // 문법 쉼표를 기준으로 정리
-    var grammarItems = exampleGrammar.split(",");  
-    var grammarFormatted = grammarItems.join("<br>");  
+	function speakWord() {
+		word = $("#questionWord").text();
+		const utterance = new SpeechSynthesisUtterance(word);
+		utterance.rate = 1; // 발음 속도 (0.1에서 10까지 조정)
+		utterance.pitch = 1; // 발음의 높낮이
+		utterance.volume = 1; // 발음의 볼륨 (0에서 1까지)
 
-    var data = {
-        questionId: questionId,
-        questionAns: questionAns,
-        questionDay : questionDay
-    };
-	
-    // 입력한 정답 공백 제거 
-	questionAns = questionAns.replaceAll(" ","");
-    if (realAnsArray.includes(questionAns.trim())) {
-        showModal("정답입니다! <br>"+
-        		"<br> 1. 단어 해석 <br>" + "[" + realAns + "] <br>" +
-        		"<br> 2. 예문 <br>" + "[" + exampleDetail + "] <br>" +
-        		"<br> 3. 예문에 들어간 문법 <br> " + grammarFormatted + " <br>" +
-        		"<br> 4. 내가 해석한 예문 <br> " + example + " <br>" +
-                "<br> 5. 예문 해석 <br>" + "[" + exampleAns + "] <br>"); 
-    } else {
-        
-        showModal("오답입니다! <br>"+
-          		"<br> 1. 단어 해석 <br>" + "[" + realAns + "] <br>" +
-        		"<br> 2. 예문 <br>" + "[" + exampleDetail + "] <br>" +
-        		"<br> 3. 예문에 들어간 문법 <br> " + grammarFormatted + " <br>" +
-        		"<br> 4. 내가 해석한 예문 <br> " + example + " <br>" +
-                "<br> 5. 예문 해석 <br>" + "[" + exampleAns + "] <br>"); 
-    }
+		// 특정 언어로 발음하기
+		utterance.lang = 'en-US'; // 영어 미국식 발음
+		speechSynthesis.speak(utterance);
+	}
+	function speakExample() {
+		word = $("#exampleDetail").text();
+		const utterance = new SpeechSynthesisUtterance(word);
+		utterance.rate = 1; // 발음 속도 (0.1에서 10까지 조정)
+		utterance.pitch = 1; // 발음의 높낮이
+		utterance.volume = 1; // 발음의 볼륨 (0에서 1까지)
 
-    function showModal(message) {
-	        var modal = document.getElementById("alertModal");
-	        var messageElement = document.getElementById("alertMessage");
-	        messageElement.innerHTML = message; 
-	        modal.style.display = "block";
-	        document.getElementById("okButton").onclick = function() {
-	        	
-	        // 추가 사항 저장	
-	       	var wordAddString = $("#wordAdd").val();
-            var wordData = {
-            		wordAddString : wordAddString,
-            		questionId : questionId,
-            		exampleDetail : exampleDetail,
-            		exampleAns : exampleAns
-            }
-	        $.ajax({
-                url: '/api/word/additional-information',
-                type: 'POST',
-                data: wordData,
-                success: function(data) {
-                  
-                },
-                error: function(xhr, status, error) {
-                    console.error('additional-information:', error);
-                }
-            });
-        
-            modal.style.display = "none";
-            
-            // 다음 문제가 있다면 다음 문제로 이동
-             $.ajax({
-                url: '/api/word/wrong-next-check',
-                type: 'POST',
-                data: data,
-                success: function(data) {
-                    questionId = data.questionId;
-                    
-                    window.location.href = '/word/wrong-practice?questionId=' + questionId;
-                    
-                },
-                error: function(xhr, status, error) {
-                    console.error('next-check Error:', error);
-                }
-            }); 
-        
-        }
+		// 특정 언어로 발음하기
+		utterance.lang = 'en-US'; // 영어 미국식 발음
+		speechSynthesis.speak(utterance);
+	}
+	$(".btn")
+			.click(
+					function() {
+						var questionId = $("#questionId").text();
+						var questionAns = $("#answer").val();
+						var realAns = $("#realAns").val();
 
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
-        }
-    }
+						// 내가 입력한 예문 해석
+						var example = $("#example").val();
 
-});
+						var questionDay = $("#questionDay").val();
+						// 예문 
+						var exampleDetail = $("#exampleDetail").text();
 
+						// 예문 해석
+						var exampleAns = $("#exampleAns").val();
+
+						// 예문 문법
+						var exampleGrammar = $("#exampleGrammar").val();
+
+						var realAnsArray = realAns.split(",");
+
+						// 정답 공백제거
+						for (var i = 0; i < realAnsArray.length; i++) {
+							realAnsArray[i] = realAnsArray[i].replaceAll(" ",
+									"");
+						}
+
+						// 문법 쉼표를 기준으로 정리
+						var grammarItems = exampleGrammar.split(",");
+						var grammarFormatted = grammarItems.join("<br>");
+
+						var data = {
+							questionId : questionId,
+							questionAns : questionAns,
+							questionDay : questionDay
+						};
+
+						// 입력한 정답 공백 제거 
+						questionAns = questionAns.replaceAll(" ", "");
+						if (realAnsArray.includes(questionAns.trim())) {
+							showModal("정답입니다! <br>" + "<br> 1. 단어 해석 <br>"
+									+ "[" + realAns + "] <br>"
+									+ "<br> 2. 예문 <br>" + "[" + exampleDetail
+									+ "] <br>" + "<br> 3. 예문에 들어간 문법 <br> "
+									+ grammarFormatted + " <br>"
+									+ "<br> 4. 내가 해석한 예문 <br> " + example
+									+ " <br>" + "<br> 5. 예문 해석 <br>" + "["
+									+ exampleAns + "] <br>");
+						} else {
+
+							showModal("오답입니다! <br>" + "<br> 1. 단어 해석 <br>"
+									+ "[" + realAns + "] <br>"
+									+ "<br> 2. 예문 <br>" + "[" + exampleDetail
+									+ "] <br>" + "<br> 3. 예문에 들어간 문법 <br> "
+									+ grammarFormatted + " <br>"
+									+ "<br> 4. 내가 해석한 예문 <br> " + example
+									+ " <br>" + "<br> 5. 예문 해석 <br>" + "["
+									+ exampleAns + "] <br>");
+						}
+
+						function showModal(message) {
+							var modal = document.getElementById("alertModal");
+							var messageElement = document
+									.getElementById("alertMessage");
+							messageElement.innerHTML = message;
+							modal.style.display = "block";
+							document.getElementById("okButton").onclick = function() {
+
+								// 추가 사항 저장	
+								var wordAddString = $("#wordAdd").val();
+								var wordData = {
+									wordAddString : wordAddString,
+									questionId : questionId,
+									exampleDetail : exampleDetail,
+									exampleAns : exampleAns
+								}
+								$.ajax({
+									url : '/api/word/additional-information',
+									type : 'POST',
+									data : wordData,
+									success : function(data) {
+
+									},
+									error : function(xhr, status, error) {
+										console.error(
+												'additional-information:',
+												error);
+									}
+								});
+
+								modal.style.display = "none";
+
+								// 다음 문제가 있다면 다음 문제로 이동
+								$
+										.ajax({
+											url : '/api/word/wrong-next-check',
+											type : 'POST',
+											data : data,
+											success : function(data) {
+												questionId = data.questionId;
+
+												window.location.href = '/word/wrong-practice?questionId='
+														+ questionId;
+
+											},
+											error : function(xhr, status, error) {
+												console.error(
+														'next-check Error:',
+														error);
+											}
+										});
+
+							}
+
+							window.onclick = function(event) {
+								if (event.target == modal) {
+									modal.style.display = "none";
+								}
+							}
+						}
+
+					});
 </script>
 </html>
