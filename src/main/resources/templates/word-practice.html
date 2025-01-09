@@ -142,7 +142,8 @@ input[type="text"] {
 
 
 		<div class="question">
-			문제 아이디: <span th:text="${questionDto.questionId}" id="questionId"></span>
+			<input type="hidden" id="questionId"
+				th:value="${questionDto.questionId}">
 		</div>
 
 		<div class="question">
@@ -218,7 +219,7 @@ input[type="text"] {
 	$(".btn")
 			.click(
 					function() {
-						var questionId = $("#questionId").text();
+						var questionId = $("#questionId").val();
 						var questionAns = $("#answer").val();
 						var realAns = $("#realAns").val();
 
