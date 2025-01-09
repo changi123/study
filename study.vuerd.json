@@ -4,13 +4,13 @@
   "settings": {
     "width": 2000,
     "height": 2000,
-    "scrollTop": -6.4611,
-    "scrollLeft": -757.9866,
+    "scrollTop": 0,
+    "scrollLeft": -543.9866,
     "zoomLevel": 1,
     "show": 431,
     "database": 4,
     "databaseName": "",
-    "canvasType": "ERD",
+    "canvasType": "@dineug/erd-editor/builtin-schema-sql",
     "language": 1,
     "tableNameCase": 4,
     "columnNameCase": 2,
@@ -151,19 +151,19 @@
         "id": "lom74GIwXkCXxlI4tl4Yd",
         "tableId": "f8VNBE5npKa7EaDxY7_Qe",
         "name": "questionId",
-        "comment": "",
+        "comment": "문제아이디",
         "dataType": "INT",
         "default": "",
         "options": 10,
         "ui": {
           "keys": 1,
           "widthName": 60,
-          "widthComment": 60,
+          "widthComment": 62,
           "widthDataType": 60,
           "widthDefault": 60
         },
         "meta": {
-          "updateAt": 1736317217956,
+          "updateAt": 1736341056097,
           "createAt": 1736317068963
         }
       },
@@ -171,19 +171,19 @@
         "id": "zPxbra2nyGxlVN3ljaK-Z",
         "tableId": "f8VNBE5npKa7EaDxY7_Qe",
         "name": "questionWord",
-        "comment": "",
-        "dataType": "VARCHAR",
+        "comment": "문제단어",
+        "dataType": "VARCHAR(255)",
         "default": "",
         "options": 0,
         "ui": {
           "keys": 0,
           "widthName": 77,
           "widthComment": 60,
-          "widthDataType": 60,
+          "widthDataType": 81,
           "widthDefault": 60
         },
         "meta": {
-          "updateAt": 1736317137647,
+          "updateAt": 1736341059174,
           "createAt": 1736317069071
         }
       },
@@ -191,19 +191,19 @@
         "id": "VHvaK6rZ8N5j2h5zWo24J",
         "tableId": "f8VNBE5npKa7EaDxY7_Qe",
         "name": "questionAns",
-        "comment": "",
-        "dataType": "VARCHAR",
+        "comment": "문제정답",
+        "dataType": "VARCHAR(255)",
         "default": "",
         "options": 0,
         "ui": {
           "keys": 0,
           "widthName": 68,
           "widthComment": 60,
-          "widthDataType": 60,
+          "widthDataType": 81,
           "widthDefault": 60
         },
         "meta": {
-          "updateAt": 1736317139322,
+          "updateAt": 1736341077190,
           "createAt": 1736317069281
         }
       },
@@ -211,7 +211,7 @@
         "id": "v3B4FPOd2GCrJRq-bvvT5",
         "tableId": "f8VNBE5npKa7EaDxY7_Qe",
         "name": "questionCnt",
-        "comment": "",
+        "comment": "틀린횟수",
         "dataType": "INT",
         "default": "",
         "options": 0,
@@ -223,7 +223,7 @@
           "widthDefault": 60
         },
         "meta": {
-          "updateAt": 1736317121050,
+          "updateAt": 1736341079713,
           "createAt": 1736317069398
         }
       },
@@ -231,7 +231,7 @@
         "id": "lF1IUsu2lh1nBSs4odkD3",
         "tableId": "f8VNBE5npKa7EaDxY7_Qe",
         "name": "questionDay",
-        "comment": "",
+        "comment": "포함 Day",
         "dataType": "INT",
         "default": "",
         "options": 0,
@@ -243,7 +243,7 @@
           "widthDefault": 60
         },
         "meta": {
-          "updateAt": 1736317122853,
+          "updateAt": 1736341083016,
           "createAt": 1736317111058
         }
       },
@@ -399,7 +399,7 @@
           "columnIds": [
             "lom74GIwXkCXxlI4tl4Yd"
           ],
-          "x": 1020,
+          "x": 1043,
           "y": 469,
           "direction": 2
         },
@@ -461,7 +461,8 @@
         "name": 1736317102282,
         "dataType": 1736317118464,
         "default": 1736317153183,
-        "options(primaryKey)": 1736317217956
+        "options(primaryKey)": 1736317217956,
+        "comment": 1736341056095
       }
     ],
     "zPxbra2nyGxlVN3ljaK-Z": [
@@ -470,7 +471,8 @@
       -1,
       {
         "name": 1736317104978,
-        "dataType": 1736317137646
+        "dataType": 1736340834385,
+        "comment": 1736341059173
       }
     ],
     "VHvaK6rZ8N5j2h5zWo24J": [
@@ -479,7 +481,8 @@
       -1,
       {
         "name": 1736317107914,
-        "dataType": 1736317139321
+        "dataType": 1736340822917,
+        "comment": 1736341077189
       }
     ],
     "v3B4FPOd2GCrJRq-bvvT5": [
@@ -488,7 +491,8 @@
       -1,
       {
         "name": 1736317110407,
-        "dataType": 1736317121050
+        "dataType": 1736317121050,
+        "comment": 1736341079712
       }
     ],
     "lF1IUsu2lh1nBSs4odkD3": [
@@ -497,7 +501,8 @@
       -1,
       {
         "name": 1736317113032,
-        "dataType": 1736317122852
+        "dataType": 1736317122852,
+        "comment": 1736341083015
       }
     ],
     "ME0gsV0zQPulQvHWlTnro": [
