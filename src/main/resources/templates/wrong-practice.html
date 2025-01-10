@@ -35,17 +35,17 @@ body {
 	transition: background-color 0.3s ease; /* 부드러운 배경 색상 전환 효과 */
 }
 
-#homeButton {
-	position: absolute;
-	top: 20px;
-	left: 20px;
-}
 
 .question {
 	font-size: 24px;
 	margin-bottom: 20px;
 }
 
+#homeButton {
+	position: absolute;
+	top: 20px;
+	left: 20px;
+}
 .input-container {
 	margin-bottom: 20px;
 }
@@ -58,7 +58,7 @@ input[type="text"] {
 	border-radius: 5px;
 }
 
-.btn {
+.btn ,.homeButton {
 	padding: 10px 20px;
 	font-size: 16px;
 	color: white;
@@ -97,15 +97,16 @@ input[type="text"] {
 	margin: -1% auto;
 	padding: 30px;
 	border: 1px solid #888;
-	width: 550px;
-	height: 550px;
+	width: 650px; /* 넓이를 더 크게 설정 */
+	max-height: 80vh; /* 모달 최대 높이 */
 	box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 	border-radius: 10px;
 	text-align: center;
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
-	align-items: center;
+	justify-content: flex-start; /* 상단 정렬 */
+	align-items: stretch; /* 전체 폭 차지하도록 설정 */
+	overflow-y: auto;
 }
 
 /* 확인 버튼 */
@@ -154,7 +155,8 @@ input[type="text"] {
 		</div>
 
 		<button class="btn">확인</button>
-		<button class="btn" id="homeButton" onclick="window.location.href=`/`">홈으로</button>
+		<button class="homeButton" id="homeButton"
+			onclick="window.location.href=`/`">홈으로</button>
 		<input type="hidden" id="realAns"
 			th:value="${questionDto.questionAns}"> <input type="hidden"
 			id="exampleAns" th:value="${exampleDto.exampleAns}"> <input
@@ -203,10 +205,12 @@ input[type="text"] {
 	$(".btn")
 			.click(
 					function() {
+						
 						var questionId = $("#questionId").text();
 						var questionAns = $("#answer").val();
 						var realAns = $("#realAns").val();
-
+						var homeButton = $(".homeButton");
+						homeButton.hide();
 						// 내가 입력한 예문 해석
 						var example = $("#example").val();
 
