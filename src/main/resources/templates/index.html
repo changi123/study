@@ -23,9 +23,10 @@ body {
 }
 
 .btn-container {
-	display: flex; /* 버튼들을 수평으로 나열 */
-	justify-content: center; /* 버튼들 사이에 간격을 균등하게 배치 */
-	gap: 15px; /* 버튼들 사이의 간격 설정 */
+	display: flex; 
+	flex-wrap: wrap; 
+	justify-content: center; 
+	gap: 15px; 
 }
 
 h1 {
@@ -51,9 +52,22 @@ h1 {
 
 /* 이미지 스타일 */
 #footerImage {
-	width: 80%; /* 적당한 크기로 설정 */
-	max-width: 600px; /* 최대 크기 설정 */
+	width: 80%; 
+	max-width: 600px; 
 	margin-top: 30px;
+}
+
+/* 모바일 화면에서 버튼 크기와 배치를 조정 */
+@media (max-width: 768px) {
+	.btn {
+		width: 100%; 
+		font-size: 16px; 
+		padding: 12px 0; 
+	}
+	.btn-container {
+		flex-direction: column; 
+		gap: 10px; 
+	}
 }
 </style>
 </head>
@@ -106,8 +120,6 @@ h1 {
 				console.error('/api/word/maxDay', error);
 			}
 		});
-		
-	
 	});
 
 	// 단어 추가 페이지
