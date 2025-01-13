@@ -24,6 +24,11 @@ body {
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 	position: relative; /* 추가: container 내부에서 절대 위치를 잡을 수 있게 함 */
 }
+@media (max-width: 768px) {
+    .container {
+        width: 90%;
+    }
+}
 /* 발음 버튼 스타일 */
 #speakBtn {
 	padding: 12px 25px;
@@ -98,8 +103,8 @@ input[type="text"] {
 	margin: -1% auto;
 	padding: 30px;
 	border: 1px solid #888;
-	width: 75%;  
-	height: 75%; 
+	width: 40%;  
+	height: 60%; 
 	box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 	border-radius: 10px;
 	text-align: center;
@@ -113,7 +118,28 @@ input[type="text"] {
 	transform: translate(-50%, -50%); 
 	 
 }
-
+@media (max-width: 768px) {
+    .modal-content {
+	background-color: #fefefe;
+	margin: -1% auto;
+	padding: 30px;
+	border: 1px solid #888;
+	width: 75%;  
+	height: 83%; 
+	box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+	border-radius: 10px;
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	top: 50%; 
+	left: 50%;  
+	transform: translate(-50%, -50%); 
+	 
+	}
+}
 #homeButton {
     position: absolute;
     top: 5px; 
