@@ -37,7 +37,7 @@ dependencies {
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 bootWar {
-    archiveBaseName = 'HongEnglish'
+    archiveBaseName = 'EngageEnglish'
 
 }
 tasks.named('test') {
