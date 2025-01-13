@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <title>Word Test</title>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
 body {
@@ -90,14 +91,15 @@ input[type="text"] {
 	padding-top: 60px;
 }
 
+
 /* 모달 내용 스타일  */
 .modal-content {
 	background-color: #fefefe;
 	margin: -1% auto;
 	padding: 30px;
 	border: 1px solid #888;
-	width: 550px;
-	height: 550px;
+	width: 75%;  
+	height: 75%; 
 	box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 	border-radius: 10px;
 	text-align: center;
@@ -105,6 +107,25 @@ input[type="text"] {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	position: absolute;
+	top: 50%; 
+	left: 50%;  
+	transform: translate(-50%, -50%); 
+	 
+}
+
+#homeButton {
+    position: absolute;
+    top: 5px; /* 위쪽에서 10px 떨어지게 설정 */
+    left: 5px; /* 왼쪽에서 10px 떨어지게 설정 */
+    padding: 8px 16px; /* 크기를 줄여서 버튼 크기 축소 */
+    font-size: 14px; /* 폰트 크기 줄이기 */
+    color: white;
+    background-color: #007bff; /* 기존 색상 */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 1000; /* 모달과 겹치지 않도록 z-index 설정 */
 }
 
 /* 확인 버튼  */
@@ -230,18 +251,26 @@ input[type="text"] {
 									"");
 						}
 						if (realAnsArray.includes(questionAns.trim())) {
-							showModal("정답입니다! <br>" + "<br> 1. 단어 해석 <br>"
-									+ "[" + realAns + "] <br>"
-									+ "<br> 2. 예문 <br>" + "[" + exampleDetail
-									+ "] <br>" + "<br> 3. 예문 해석 <br>" + "["
-									+ exampleAns + "] <br>");
+						    showModal(
+						        "<span style='font-size: 18px; color: green;'>정답입니다!</span> <br>" + 
+						        "<br> <span style='font-size: 16px; color: #2C3E50;'>1. 단어 해석</span> <br>" +
+						        "<span style='font-size: 18px; color: #2980B9;'>[" + realAns + "]</span> <br>" + 
+						        "<br> <span style='font-size: 16px; color: #2C3E50;'>2. 예문</span> <br>" + 
+						        "<span style='font-size: 16px; color: #2980B9;'>[" + exampleDetail + "]</span> <br>" + 
+						        "<br> <span style='font-size: 16px; color: #2C3E50;'>3. 예문 해석</span> <br>" + 
+						        "<span style='font-size: 16px; color: #2980B9;'>[" + exampleAns + "]</span> <br>"
+						    );
 						} else {
-							flag = false;
-							showModal("오답입니다! <br>" + "<br> 1. 단어 해석 <br>"
-									+ "[" + realAns + "] <br>"
-									+ "<br> 2. 예문 <br>" + "[" + exampleDetail
-									+ "] <br>" + "<br> 3. 예문 해석 <br>" + "["
-									+ exampleAns + "] <br>");
+						    flag = false;
+						    showModal(
+						        "<span style='font-size: 18px; color: red;'>오답입니다!</span> <br>" + 
+						        "<br> <span style='font-size: 16px; color: #2C3E50;'>1. 단어 해석</span> <br>" + 
+						        "<span style='font-size: 18px; color: #2980B9;'>[" + realAns + "]</span> <br>" + 
+						        "<br> <span style='font-size: 16px; color: #2C3E50;'>2. 예문</span> <br>" + 
+						        "<span style='font-size: 16px; color: #2980B9;'>[" + exampleDetail + "]</span> <br>" + 
+						        "<br> <span style='font-size: 16px; color: #2C3E50;'>3. 예문 해석</span> <br>" + 
+						        "<span style='font-size: 16px; color: #2980B9;'>[" + exampleAns + "]</span> <br>"
+						    );
 						}
 
 						function showModal(message) {

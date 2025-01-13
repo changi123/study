@@ -5,6 +5,7 @@
 <meta charset="UTF-8">
 <title>Word Practice</title>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
 /* 기존 스타일 유지 */
@@ -91,22 +92,41 @@ input[type="text"] {
 	padding-top: 60px;
 }
 
-/* 모달 내용 스타일 */
+
+/* 모달 내용 스타일  */
 .modal-content {
 	background-color: #fefefe;
 	margin: -1% auto;
 	padding: 30px;
 	border: 1px solid #888;
-	width: 650px; /* 넓이를 더 크게 설정 */
-	max-height: 80vh; /* 모달 최대 높이 */
+	width: 75%;  
+	height: 75%; 
 	box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 	border-radius: 10px;
 	text-align: center;
 	display: flex;
 	flex-direction: column;
-	justify-content: flex-start; /* 상단 정렬 */
-	align-items: stretch; /* 전체 폭 차지하도록 설정 */
-	overflow-y: auto;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	top: 50%; 
+	left: 50%;  
+	transform: translate(-50%, -50%); 
+	 
+}
+
+#homeButton {
+    position: absolute;
+    top: 5px; 
+    left: 5px; 
+    padding: 8px 16px; 
+    font-size: 14px; 
+    color: white;
+    background-color: #007bff; 
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 1000; 
 }
 
 /* textarea 스타일 */
@@ -187,7 +207,7 @@ input[type="text"] {
 			<p id="alertMessage"></p>
 			<textarea id="wordAdd"
 				placeholder="Day0 에 추가할 사항을 적어주세요 ex)a strict policy : 엄격한 정책, regarding vacation days: 휴가 일수에 관한"
-				style="width: 100%; height: 100%"></textarea>
+				style="width: 90%; height: 90%"></textarea>
 			<button id="okButton">확인</button>
 		</div>
 	</div>
@@ -259,25 +279,35 @@ input[type="text"] {
 	// 입력한 정답 공백 제거 
 	questionAns = questionAns.replaceAll(" ", "");
 	if (realAnsArray.includes(questionAns.trim())) {
-		showModal("정답입니다! <br>" + "<br> 1. 단어 해석 <br>"
-				+ "[" + realAns + "] <br>"
-				+ "<br> 2. 예문 <br>" + "[" + exampleDetail
-				+ "] <br>" + "<br> 3. 예문에 들어간 문법 <br> "
-				+ grammarFormatted + " <br>"
-				+ "<br> 4. 내가 해석한 예문 <br> " + example
-				+ " <br>" + "<br> 5. 예문 해석 <br>" + "["
-				+ exampleAns + "] <br>");
+	    showModal(
+	        "<span style='font-size: 18px; color: green;'>정답입니다!</span> <br>" + 
+	        "<br> <span style='font-size: 16px; color: #2C3E50;'>1. 단어 해석</span> <br>" +
+	        "<span style='font-size: 18px; color: #2980B9;'>[" + realAns + "]</span> <br>" + 
+	        "<br> <span style='font-size: 16px; color: #2C3E50;'>2. 예문</span> <br>" + 
+	        "<span style='font-size: 16px; color: #2980B9;'>[" + exampleDetail + "]</span> <br>" + 
+	        "<br> <span style='font-size: 16px; color: #2C3E50;'>3. 예문에 들어간 문법</span> <br> " + 
+	        "<span style='font-size: 16px; color: #2980B9;'>" + grammarFormatted + "</span> <br>" + 
+	        "<br> <span style='font-size: 16px; color: #2C3E50;'>4. 내가 해석한 예문</span> <br>" + 
+	        "<span style='font-size: 16px; color: #2980B9;'>" + example + "</span> <br>" + 
+	        "<br> <span style='font-size: 16px; color: #2C3E50;'>5. 예문 해석</span> <br>" + 
+	        "<span style='font-size: 16px; color: #2980B9;'>[" + exampleAns + "]</span> <br>"
+	    );
 	} else {
-
-		showModal("오답입니다! <br>" + "<br> 1. 단어 해석 <br>"
-				+ "[" + realAns + "] <br>"
-				+ "<br> 2. 예문 <br>" + "[" + exampleDetail
-				+ "] <br>" + "<br> 3. 예문에 들어간 문법 <br> "
-				+ grammarFormatted + " <br>"
-				+ "<br> 4. 내가 해석한 예문 <br> " + example
-				+ " <br>" + "<br> 5. 예문 해석 <br>" + "["
-				+ exampleAns + "] <br>");
+	    showModal(
+	        "<span style='font-size: 18px; color: red;'>오답입니다!</span> <br>" + 
+	        "<br> <span style='font-size: 16px; color: #2C3E50;'>1. 단어 해석</span> <br>" + 
+	        "<span style='font-size: 18px; color: #2980B9;'>[" + realAns + "]</span> <br>" + 
+	        "<br> <span style='font-size: 16px; color: #2C3E50;'>2. 예문</span> <br>" + 
+	        "<span style='font-size: 16px; color: #2980B9;'>[" + exampleDetail + "]</span> <br>" + 
+	        "<br> <span style='font-size: 16px; color: #2C3E50;'>3. 예문에 들어간 문법</span> <br> " + 
+	        "<span style='font-size: 16px; color: #2980B9;'>" + grammarFormatted + "</span> <br>" + 
+	        "<br> <span style='font-size: 16px; color: #2C3E50;'>4. 내가 해석한 예문</span> <br>" + 
+	        "<span style='font-size: 16px; color: #2980B9;'>" + example + "</span> <br>" + 
+	        "<br> <span style='font-size: 16px; color: #2C3E50;'>5. 예문 해석</span> <br>" + 
+	        "<span style='font-size: 16px; color: #2980B9;'>[" + exampleAns + "]</span> <br>"
+	    );
 	}
+
 
 	function showModal(message) {
 		var modal = document.getElementById("alertModal");
