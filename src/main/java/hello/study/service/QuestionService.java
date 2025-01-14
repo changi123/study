@@ -21,7 +21,7 @@ public class QuestionService {
 	public QuestionDto selectByQuestionId(int questionId) {
 		return wordMapper.selectByQuestionId(questionId);
 		
-	}
+	} 
 	
 	@Transactional
 	public void addQuestionWithExamples(QuestionDto question, ExampleDto exampleDto) {
