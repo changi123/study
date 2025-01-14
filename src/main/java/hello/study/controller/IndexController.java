@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import hello.study.dto.ExampleDto;
 import hello.study.dto.QuestionDto;
+import hello.study.dto.UserDto;
 import hello.study.mapper.WordMapper;
 import hello.study.service.QuestionService;
+import hello.study.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 
 
@@ -21,11 +23,29 @@ import lombok.extern.slf4j.Slf4j;
 public class IndexController {
 	@Autowired
 	private  QuestionService questionService;
-
+	
 	@Autowired
-	private WordMapper wordMapper;
+	private  UserService userService;
+	
+	// 로그인 페이지 이동
+	@GetMapping("/login")
+	String login() {
+		return "login";
+	}
+	
+	// 회원가입 페이지 이동
+	@GetMapping("/register")
+	String register() {
+		return "register";
+	}
 
-
+	
+	// 회원가입
+	@PostMapping("/register")
+	String register(UserDto userDto) {
+		int result = userService.insertUser(userDto);
+		return "index";
+	}
 	// 단어 테스트 Day 선택 화면 이동
 	@GetMapping("/test-choice-day")
 	String testChoiceDay(@RequestParam("maxDay") String questionDay , Model model) {

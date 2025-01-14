@@ -6,4 +6,24 @@
 		resultType="hello.study.dto.UserDto">
 		SELECT * FROM user WHERE userId = #{userId}
 	</select>
+
+	<!-- 회원가입 -->
+	<insert id="insertUser" parameterType="hello.study.dto.UserDto">
+		INSERT INTO user
+		(
+		userId,
+		password,
+		role,
+		created_at,
+		updated_at
+		)
+		VALUES
+		(
+		#{userId},
+		#{password},
+		'USER',  <!-- 기본값 'USER'를 명시적으로 지정 -->
+		NOW(),   <!-- 현재 시간 삽입 -->
+		NOW()    <!-- 현재 시간 삽입 -->
+		);
+	</insert>
 </mapper>
