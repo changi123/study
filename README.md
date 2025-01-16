@@ -120,3 +120,4 @@
 #### ㄴ 비밀번호 암호화 저장을 위해 의존성을 유지하지만 JWT와 CSRF 관련해서 전부 허용 
 #### ㄴ 강의에 있는 내용을 먼저 적용시켜보려 하니 쉽지 않다.. 
 #### ㄴ https://www.youtube.com/watch?v=y0PXQgrkb90&list=PLJkjrxxiBSFCKD9TRKDYn7IE96K2u3C3U&index=1 강의 보고 스프링 SecurityConfig에 들어가는 내용 공부 후 적용해보자 😂
+#### <a href="https://velog.io/@changi_gg/%EC%8A%A4%ED%94%84%EB%A7%81%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0"> 먼저 적용해본 후기 .. 🤣</a>
