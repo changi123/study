@@ -35,22 +35,22 @@ public class SecurityConfig {
 		.csrf(csrf -> csrf.disable()) // CSRF 보호 비활성화
 		.authorizeHttpRequests(auth -> auth
 				.requestMatchers("/", "/api/word/**", "/word/*", "/images/**").permitAll()
-				//            .requestMatchers("/admin").hasRole("ADMIN")
-				//            .requestMatchers("/my/**").hasAnyRole("ADMIN", "USER")
+				            .requestMatchers("/admin").hasRole("ADMIN")
+				            .requestMatchers("/my/**").hasAnyRole("ADMIN", "USER")
 				.anyRequest().authenticated()
-				);
-		//        .formLogin(form -> form
-		//            .loginPage("/word/login") // 사용자 정의 로그인 페이지
-		//            .loginProcessingUrl("/word/login") // 로그인 폼의 action URL
-		//            .defaultSuccessUrl("/word/home", true) // 로그인 성공 후 이동할 URL
-		//            .failureUrl("/word/login?error=true") // 로그인 실패 시 이동할 URL
-		//            .permitAll()
-		//        )
-		//        .logout(logout -> logout
-		//            .logoutUrl("/word/logout")
-		//            .logoutSuccessUrl("/word/login?logout=true")
-		//            .permitAll()
-		//        );
+				)
+		        .formLogin(form -> form
+		            .loginPage("/word/login") // 사용자 정의 로그인 페이지
+		            .loginProcessingUrl("/word/login") // 로그인 폼의 action URL
+		            .defaultSuccessUrl("/word/home", true) // 로그인 성공 후 이동할 URL
+		            .failureUrl("/word/login?error=true") // 로그인 실패 시 이동할 URL
+		            .permitAll()
+		        )
+		        .logout(logout -> logout
+		            .logoutUrl("/word/logout")
+		            .logoutSuccessUrl("/word/login?logout=true")
+		            .permitAll()
+		        );
 
 		return http.build();
 	}
